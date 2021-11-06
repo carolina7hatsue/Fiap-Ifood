@@ -1,0 +1,72 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import com.fiap.ifood.jdbc.ConnectionDB;
+import bean.Restaurant;
+
+public class RestaurantDAO {
+	
+	private Connection connection;
+    
+    public void insert(Restaurant restaurant) {
+      PreparedStatement stmt = null;
+      
+          try {
+            connection = ConnectionDB.obtainConnection();
+            String sql = "INSERT INTO RESTAURANTE(CD_RESTAURANTE, NM_RESTAURANTE, VL_PEDIDO_MIN) VALUES (SQ_RESTAURANTE.NEXTVAL, ?, ?)";
+            stmt = connection.prepareStatement(sql);
+            stmt.setString(1, restaurant.getName());
+            stmt.setFloat(2, restaurant.getMinPrice());
+      
+            stmt.executeUpdate();
+          } catch (SQLException e) {
+            e.printStackTrace();
+          } finally {
+            try {
+              stmt.close();
+              connection.close();
+            } catch (SQLException e) {
+              e.printStackTrace();
+            }
+          }
+        }
+    
+    public List<Restaurant> select() {
+	      List<Weight> list = new ArrayList<Weight>();
+	      PreparedStatement stmt = null;
+	      ResultSet rs = null;
+	      try {
+	    	connection = ConnectionDB.obtainConnection();
+	        stmt = connection.prepareStatement("SELECT * FROM TAB_WEIGHT");
+	        rs = stmt.executeQuery();
+	    
+	        while (rs.next()) {
+	          int idWeight = rs.getInt("ID_WEIGHT");
+	          float value = rs.getFloat("VALUE");
+	          java.sql.Date date = rs.getDate("DATE_RECORD");
+	          Calendar dateRecord = Calendar.getInstance();
+	          dateRecord.setTimeInMillis(date.getTime());
+	          
+	          Weight weight = new Weight(idWeight, value, dateRecord);
+	          
+	          list.add(weight);
+	        }
+	      } catch (SQLException e) {
+	        e.printStackTrace();
+	        
+	      }finally {
+	        try {
+	          stmt.close();
+	          rs.close();
+	          connection.close();
+	        } catch (SQLException e) {
+	          e.printStackTrace();
+	        }
+	      }
+	      return list;
+	    }
+    
+    
+}

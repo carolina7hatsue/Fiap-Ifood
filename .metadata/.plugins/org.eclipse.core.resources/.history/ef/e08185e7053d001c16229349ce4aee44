@@ -1,0 +1,32 @@
+package dao;
+
+import java.sql.Connection;
+
+public class RestaurantDAO {
+	
+	private Connection connection;
+    
+    public void insert(Restaurant restaurant) {
+      PreparedStatement stmt = null;
+      
+          try {
+            connection = ConnectionDB.obtainConnection();
+            String sql = "INSERT INTO TAB_WEIGHT(ID_WEIGHT, VALUE, DATERECORD) VALUES (SQ_WEIGHT.NEXTVAL, ?, ?)";
+            stmt = connection.prepareStatement(sql);
+            stmt.setFloat(1, weight.getValue());
+            java.sql.Date date = new java.sql.Date(weight.getDate().getTimeInMillis());
+            stmt.setDate(2, date);
+      
+            stmt.executeUpdate();
+          } catch (SQLException e) {
+            e.printStackTrace();
+          } finally {
+            try {
+              stmt.close();
+              connection.close();
+            } catch (SQLException e) {
+              e.printStackTrace();
+            }
+          }
+        }
+}

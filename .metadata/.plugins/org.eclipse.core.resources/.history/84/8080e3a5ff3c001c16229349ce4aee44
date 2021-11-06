@@ -1,0 +1,5 @@
+package com.fiap.ifood.jdbc;
+
+public class ConnectionDB {
+
+}
