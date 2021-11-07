@@ -19,7 +19,7 @@ public class OracleMenuDAO {
       
           try {
             connection = ConnectionDB.obtainConnection();
-            String sql = "INSERT INTO CARDAPIO(CD_CARDAPIO, NM_NOME) VALUES (SQ_RESTAURANTE.NEXTVAL, ?)";
+            String sql = "INSERT INTO CARDAPIO(CD_CARDAPIO, NM_NOME) VALUES (SQ_CARDAPIO.NEXTVAL, ?)";
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, menu.getName());
       
@@ -42,7 +42,7 @@ public class OracleMenuDAO {
 	      ResultSet rs = null;
 	      try {
 	    	connection = ConnectionDB.obtainConnection();
-	        stmt = connection.prepareStatement("SELECT * FROM RESTAURANTE");
+	        stmt = connection.prepareStatement("SELECT * FROM CARDAPIO");
 	        rs = stmt.executeQuery();
 	    
 	        while (rs.next()) {
@@ -117,7 +117,7 @@ public class OracleMenuDAO {
         ResultSet rs = null;
         try {
       	connection = ConnectionDB.obtainConnection();
-          stmt = connection.prepareStatement("SELECT * FROM RESTAURANTE WHERE CD_RESTAURANTE = ?");
+          stmt = connection.prepareStatement("SELECT * FROM CARDAPIO WHERE CD_CARDAPIO = ?");
           stmt.setInt(1, idSearch);
           rs = stmt.executeQuery();
       

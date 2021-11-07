@@ -7,21 +7,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.fiap.shycode.bean.Payment;
+import br.com.fiap.shycode.bean.Image;
 import br.com.fiap.shycode.connection.ConnectionDB;
 
-public class OraclePaymentDAO {
+public class OracleImageDAO {
 private Connection connection;
     
-    public void insert(Payment Payment) {
+    public void insert(Image Image) {
       PreparedStatement stmt = null;
       
           try {
             connection = ConnectionDB.obtainConnection();
-            String sql = "INSERT INTO PAGAMENTO(CD_PAGAMENTO, NM_NOME) VALUES (SQ_PAGAMENTO.NEXTVAL, ?)";
+            String sql = "INSERT INTO IMAGEM(CD_IMAGEM, DS_URL, CD_RESTAURANTE) VALUES (SQ_IMAGEM.NEXTVAL, ?, ?)";
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, Payment.getName());
-      
+            stmt.setString(1, Image.getUrl());
+            stmt.setInt(2, Image.getIdRestaurant());
+            
             stmt.executeUpdate();
           } catch (SQLException e) {
             e.printStackTrace();
@@ -35,22 +36,23 @@ private Connection connection;
           }
         }
     
-    public List<Payment> select() {
-	      List<Payment> list = new ArrayList<Payment>();
+    public List<Image> select() {
+	      List<Image> list = new ArrayList<Image>();
 	      PreparedStatement stmt = null;
 	      ResultSet rs = null;
 	      try {
 	    	connection = ConnectionDB.obtainConnection();
-	        stmt = connection.prepareStatement("SELECT * FROM PAGAMENTO");
+	        stmt = connection.prepareStatement("SELECT * FROM IMAGEM");
 	        rs = stmt.executeQuery();
 	    
 	        while (rs.next()) {
-	          int idPayment = rs.getInt("CD_PAGAMENTO");
-	          String name = rs.getString("NM_NOME");
-	         	          
-	          Payment Payment = new Payment(idPayment, name);
+	          int idImage = rs.getInt("CD_IMAGEM");
+	          String url = rs.getString("DS_URL");
+	          int idRestaurant = rs.getInt("CD_RESTAURANTE");
+                
+	          Image Image = new Image(idImage, url, idRestaurant);
 	          
-	          list.add(Payment);
+	          list.add(Image);
 	        }
 	      } catch (SQLException e) {
 	        e.printStackTrace();
@@ -67,14 +69,15 @@ private Connection connection;
 	      return list;
 	    }
     
-    public void update(Payment Payment){
+    public void update(Image Image){
         PreparedStatement stmt = null;
       
         try {
       	connection = ConnectionDB.obtainConnection();
-          String sql = "UPDATE PAGAMENTO SET NM_NOME = ? WHERE CD_PAGAMENTO = ?";
+          String sql = "UPDATE IMAGEM SET DS_URL = ?, CD_RESTAURANTE = ? WHERE CD_IMAGEM = ?";
           stmt = connection.prepareStatement(sql);
-          stmt.setString(1, Payment.getName());
+          stmt.setString(1, Image.getUrl());
+          stmt.setInt(2, Image.getIdRestaurant());
       
           stmt.executeUpdate();
         } catch (SQLException e) {
@@ -94,7 +97,7 @@ private Connection connection;
       
         try {
       	connection = ConnectionDB.obtainConnection();
-          String sql = "DELETE FROM PAGAMENTO WHERE CD_PAGAMENTO = ?";
+          String sql = "DELETE FROM IMAGEM WHERE CD_IMAGEM = ?";
           stmt = connection.prepareStatement(sql);
           stmt.setInt(1, id);
           stmt.executeUpdate();
@@ -110,20 +113,22 @@ private Connection connection;
         }
       }
     
-    public Payment selectById(int idSearch){
-        Payment Payment = null;
+    public Image selectById(int idSearch){
+        Image Image = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
       	connection = ConnectionDB.obtainConnection();
-          stmt = connection.prepareStatement("SELECT * FROM PAGAMENTO WHERE CD_PAGAMENTO = ?");
+          stmt = connection.prepareStatement("SELECT * FROM IMAGEM WHERE CD_IMAGEM = ?");
           stmt.setInt(1, idSearch);
           rs = stmt.executeQuery();
       
           if (rs.next()){
-        	  int idPayment = rs.getInt("CD_PAGAMENTO");
-   	          String name = rs.getString("NM_NOME");
-            Payment = new Payment(idPayment, name);
+            int idImage = rs.getInt("CD_IMAGEM");
+            String url = rs.getString("DS_URL");
+            int idRestaurant = rs.getInt("CD_RESTAURANTE");
+            
+            Image = new Image(idImage, url,idRestaurant);
           }
           
         } catch (SQLException e) {
@@ -137,6 +142,6 @@ private Connection connection;
             e.printStackTrace();
           }
         }
-        return Payment;
+        return Image;
       }  
 }

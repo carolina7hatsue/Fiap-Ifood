@@ -41,7 +41,7 @@ private Connection connection;
 	      ResultSet rs = null;
 	      try {
 	    	connection = ConnectionDB.obtainConnection();
-	        stmt = connection.prepareStatement("SELECT * FROM RESTAURANTE");
+	        stmt = connection.prepareStatement("SELECT * FROM CATEGORIA");
 	        rs = stmt.executeQuery();
 	    
 	        while (rs.next()) {
