@@ -13,14 +13,14 @@ import br.com.fiap.shycode.connection.ConnectionDB;
 public class OraclePaymentDAO {
 private Connection connection;
     
-    public void insert(Payment Payment) {
+    public void insert(Payment payment) {
       PreparedStatement stmt = null;
       
           try {
             connection = ConnectionDB.obtainConnection();
             String sql = "INSERT INTO PAGAMENTO(CD_PAGAMENTO, NM_NOME) VALUES (SQ_PAGAMENTO.NEXTVAL, ?)";
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, Payment.getName());
+            stmt.setString(1, payment.getName());
       
             stmt.executeUpdate();
           } catch (SQLException e) {
@@ -67,14 +67,17 @@ private Connection connection;
 	      return list;
 	    }
     
-    public void update(Payment Payment){
+    public void update(Payment payment){
         PreparedStatement stmt = null;
       
         try {
       	connection = ConnectionDB.obtainConnection();
           String sql = "UPDATE PAGAMENTO SET NM_NOME = ? WHERE CD_PAGAMENTO = ?";
           stmt = connection.prepareStatement(sql);
-          stmt.setString(1, Payment.getName());
+          stmt.setString(1, payment.getName());
+          
+          //PARAMETER WHERE
+          stmt.setInt(4, payment.getIdPayment());
       
           stmt.executeUpdate();
         } catch (SQLException e) {

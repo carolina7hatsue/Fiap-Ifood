@@ -7,22 +7,31 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.fiap.shycode.bean.Image;
+import br.com.fiap.shycode.bean.Item;
 import br.com.fiap.shycode.connection.ConnectionDB;
 
-public class OracleImageDAO {
+public class OracleItemDAO {
 private Connection connection;
     
-    public void insert(Image image) {
+    public void insert(Item item) {
       PreparedStatement stmt = null;
       
           try {
             connection = ConnectionDB.obtainConnection();
-            String sql = "INSERT INTO IMAGEM(CD_IMAGEM, DS_URL, CD_RESTAURANTE) VALUES (SQ_IMAGEM.NEXTVAL, ?, ?)";
+            String sql = "INSERT INTO ITEM("
+            		+ "CD_ITEM,"
+            		+ "DS_DESCRICAO,"
+            		+ "VL_PRECO,"
+            		+ "NM_NOME) "
+            		+ "VALUES "
+            		+ "(SQ_ITEM.NEXTVAL,"
+            		+ " ?,"
+            		+ " ?,"
+            		+ " ?)";
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, image.getUrl());
-            stmt.setInt(2, image.getIdRestaurant());
-            
+            stmt.setString(1, item.getDescription());
+            stmt.setFloat(2, item.getPrice());
+            stmt.setString(3, item.getName());
             stmt.executeUpdate();
           } catch (SQLException e) {
             e.printStackTrace();
@@ -36,23 +45,24 @@ private Connection connection;
           }
         }
     
-    public List<Image> select() {
-	      List<Image> list = new ArrayList<Image>();
+    public List<Item> select() {
+	      List<Item> list = new ArrayList<Item>();
 	      PreparedStatement stmt = null;
 	      ResultSet rs = null;
 	      try {
 	    	connection = ConnectionDB.obtainConnection();
-	        stmt = connection.prepareStatement("SELECT * FROM IMAGEM");
+	        stmt = connection.prepareStatement("SELECT * FROM ITEM");
 	        rs = stmt.executeQuery();
 	    
 	        while (rs.next()) {
-	          int idImage = rs.getInt("CD_IMAGEM");
-	          String url = rs.getString("DS_URL");
-	          int idRestaurant = rs.getInt("CD_RESTAURANTE");
-                
-	          Image Image = new Image(idImage, url, idRestaurant);
+	          int idItem = rs.getInt("CD_ITEM");
+	          String description = rs.getString("DS_DESCRICAO");
+	          float price = rs.getFloat("VL_PRECO");
+	          String name = rs.getString("NM_NOME");
 	          
-	          list.add(Image);
+	          Item Item = new Item(idItem, description,price,name);
+	          
+	          list.add(Item);
 	        }
 	      } catch (SQLException e) {
 	        e.printStackTrace();
@@ -69,18 +79,21 @@ private Connection connection;
 	      return list;
 	    }
     
-    public void update(Image image){
+    public void update(Item item){
         PreparedStatement stmt = null;
       
         try {
       	connection = ConnectionDB.obtainConnection();
-          String sql = "UPDATE IMAGEM SET DS_URL = ?, CD_RESTAURANTE = ? WHERE CD_IMAGEM = ?";
+          String sql = "UPDATE ITEM SET DS_DESCRICAO = ?,"
+          		+ "VL_PRECO = ?,"
+          		+ "NM_NOME = ? WHERE CD_ITEM = ?";
           stmt = connection.prepareStatement(sql);
-          stmt.setString(1, image.getUrl());
-          stmt.setInt(2, image.getIdRestaurant());
+          stmt.setString(1, item.getDescription());
+          stmt.setFloat(1, item.getPrice());
+          stmt.setString(3, item.getName());
           
           //PARAMETER WHERE
-          stmt.setInt(2, image.getIdImage());
+          stmt.setInt(4, item.getIdItem());
       
           stmt.executeUpdate();
         } catch (SQLException e) {
@@ -100,7 +113,7 @@ private Connection connection;
       
         try {
       	connection = ConnectionDB.obtainConnection();
-          String sql = "DELETE FROM IMAGEM WHERE CD_IMAGEM = ?";
+          String sql = "DELETE FROM ITEM WHERE CD_ITEM = ?";
           stmt = connection.prepareStatement(sql);
           stmt.setInt(1, id);
           stmt.executeUpdate();
@@ -116,22 +129,23 @@ private Connection connection;
         }
       }
     
-    public Image selectById(int idSearch){
-        Image Image = null;
+    public Item selectById(int idSearch){
+        Item Item = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         try {
       	connection = ConnectionDB.obtainConnection();
-          stmt = connection.prepareStatement("SELECT * FROM IMAGEM WHERE CD_IMAGEM = ?");
+          stmt = connection.prepareStatement("SELECT * FROM ITEM WHERE CD_ITEM = ?");
           stmt.setInt(1, idSearch);
           rs = stmt.executeQuery();
       
           if (rs.next()){
-            int idImage = rs.getInt("CD_IMAGEM");
-            String url = rs.getString("DS_URL");
-            int idRestaurant = rs.getInt("CD_RESTAURANTE");
-            
-            Image = new Image(idImage, url,idRestaurant);
+        	  int idItem = rs.getInt("CD_ITEM");
+	          String description = rs.getString("DS_DESCRICAO");
+	          float price = rs.getFloat("VL_PRECO");
+	          String name = rs.getString("NM_NOME");
+	          
+	          Item = new Item(idItem, description,price,name);
           }
           
         } catch (SQLException e) {
@@ -145,6 +159,6 @@ private Connection connection;
             e.printStackTrace();
           }
         }
-        return Image;
+        return Item;
       }  
 }

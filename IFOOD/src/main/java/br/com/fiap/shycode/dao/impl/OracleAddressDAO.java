@@ -14,7 +14,7 @@ public class OracleAddressDAO {
 	
 	private Connection connection;
     
-    public void insert(Address Address) {
+    public void insert(Address address) {
       PreparedStatement stmt = null;
       
           try {
@@ -40,14 +40,14 @@ public class OracleAddressDAO {
             		+ "?,"
             		+ "?)";
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, Address.getStreet());
-            stmt.setString(2, Address.getDistrict());
-            stmt.setInt(3, Address.getNumber());
-            stmt.setInt(4, Address.getCEP());
-            stmt.setString(5, Address.getCity());
-            stmt.setString(6, Address.getState());
-            stmt.setString(7, Address.getCountry());
-            stmt.setString(8, Address.getComplement());
+            stmt.setString(1, address.getStreet());
+            stmt.setString(2, address.getDistrict());
+            stmt.setInt(3, address.getNumber());
+            stmt.setInt(4, address.getCEP());
+            stmt.setString(5, address.getCity());
+            stmt.setString(6, address.getState());
+            stmt.setString(7, address.getCountry());
+            stmt.setString(8, address.getComplement());
             
             stmt.executeUpdate();
           } catch (SQLException e) {
@@ -101,7 +101,7 @@ public class OracleAddressDAO {
 	      return list;
 	    }
     
-    public void update(Address Address){
+    public void update(Address address){
         PreparedStatement stmt = null;
       
         try {
@@ -117,17 +117,17 @@ public class OracleAddressDAO {
           		+ "DS_COMPLEMENTO = ?"
           		+ "WHERE CD_ENDERECO = ?";
           stmt = connection.prepareStatement(sql);
-          stmt.setString(1, Address.getStreet());
-          stmt.setString(2, Address.getDistrict());
-          stmt.setInt(3, Address.getNumber());
-          stmt.setInt(4, Address.getCEP());
-          stmt.setString(5, Address.getCity());
-          stmt.setString(6, Address.getState());
-          stmt.setString(7, Address.getCountry());
-          stmt.setString(8, Address.getComplement());
+          stmt.setString(1, address.getStreet());
+          stmt.setString(2, address.getDistrict());
+          stmt.setInt(3, address.getNumber());
+          stmt.setInt(4, address.getCEP());
+          stmt.setString(5, address.getCity());
+          stmt.setString(6, address.getState());
+          stmt.setString(7, address.getCountry());
+          stmt.setString(8, address.getComplement());
           
           //PARAMETER WHERE
-          stmt.setInt(9, Address.getIdAddress());
+          stmt.setInt(9, address.getIdAddress());
           
           stmt.executeUpdate();
         } catch (SQLException e) {
