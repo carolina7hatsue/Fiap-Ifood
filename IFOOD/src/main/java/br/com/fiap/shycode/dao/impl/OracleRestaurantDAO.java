@@ -79,6 +79,9 @@ public class OracleRestaurantDAO {
           stmt = connection.prepareStatement(sql);
           stmt.setString(1, restaurant.getName());
           stmt.setFloat(2, restaurant.getMinPrice());
+          
+          //PARAMETER WHERE
+          stmt.setInt(4, restaurant.getIdRestaurant());
       
           stmt.executeUpdate();
         } catch (SQLException e) {

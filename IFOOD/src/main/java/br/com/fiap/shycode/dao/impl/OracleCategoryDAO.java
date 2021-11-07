@@ -13,14 +13,14 @@ import br.com.fiap.shycode.connection.ConnectionDB;
 public class OracleCategoryDAO {
 private Connection connection;
     
-    public void insert(Category Category) {
+    public void insert(Category category) {
       PreparedStatement stmt = null;
       
           try {
             connection = ConnectionDB.obtainConnection();
             String sql = "INSERT INTO CATEGORIA(CD_CATEGORIA, DS_NOME) VALUES (SQ_CATEGORIA.NEXTVAL, ?)";
             stmt = connection.prepareStatement(sql);
-            stmt.setString(1, Category.getName());
+            stmt.setString(1, category.getName());
       
             stmt.executeUpdate();
           } catch (SQLException e) {
@@ -67,15 +67,18 @@ private Connection connection;
 	      return list;
 	    }
     
-    public void update(Category Category){
+    public void update(Category category){
         PreparedStatement stmt = null;
       
         try {
       	connection = ConnectionDB.obtainConnection();
           String sql = "UPDATE CATEGORIA SET DS_NOME = ? WHERE CD_CATEGORIA = ?";
           stmt = connection.prepareStatement(sql);
-          stmt.setString(1, Category.getName());
+          stmt.setString(1, category.getName());
       
+        //PARAMETER WHERE
+          stmt.setInt(2, category.getIdCategory());
+          
           stmt.executeUpdate();
         } catch (SQLException e) {
           e.printStackTrace();

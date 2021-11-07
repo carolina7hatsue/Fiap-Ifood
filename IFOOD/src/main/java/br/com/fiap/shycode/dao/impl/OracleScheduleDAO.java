@@ -14,7 +14,7 @@ import br.com.fiap.shycode.connection.ConnectionDB;
 public class OracleScheduleDAO {
 private Connection connection;
     
-    public void insert(Schedule Schedule) {
+    public void insert(Schedule schedule) {
       PreparedStatement stmt = null;
       
           try {
@@ -33,10 +33,10 @@ private Connection connection;
             		+ " ?)";
             
             stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, Schedule.getIdRestaurant());
-            stmt.setDate(1, Schedule.getDayOfTheWeek());
-            stmt.setDate(1, Schedule.getStart());
-            stmt.setDate(1, Schedule.getEnd());
+            stmt.setInt(1, schedule.getIdRestaurant());
+            stmt.setDate(1, schedule.getDayOfTheWeek());
+            stmt.setDate(1, schedule.getStart());
+            stmt.setDate(1, schedule.getEnd());
             
             stmt.executeUpdate();
           } catch (SQLException e) {
@@ -86,7 +86,7 @@ private Connection connection;
 	      return list;
 	    }
     
-    public void update(Schedule Schedule){
+    public void update(Schedule schedule){
         PreparedStatement stmt = null;
       
         try {
@@ -97,10 +97,15 @@ private Connection connection;
           		+ "DT_HORARIO_INICIO = ?,"
           		+ "DT_HORARIO_FIM = ? WHERE CD_HORARIO = ?";
           stmt = connection.prepareStatement(sql);
-          stmt.setInt(1, Schedule.getIdRestaurant());
-          stmt.setDate(2, Schedule.getDayOfTheWeek());
-          stmt.setDate(3, Schedule.getStart());
-          stmt.setDate(4, Schedule.getEnd());
+          stmt.setInt(1, schedule.getIdRestaurant());
+          stmt.setDate(2, schedule.getDayOfTheWeek());
+          stmt.setDate(3, schedule.getStart());
+          stmt.setDate(4, schedule.getEnd());
+          
+          
+        //PARAMETER WHERE
+          stmt.setInt(4, schedule.getIdSchedule());
+          
           stmt.executeUpdate();
         } catch (SQLException e) {
           e.printStackTrace();

@@ -76,6 +76,9 @@ public class OracleMenuDAO {
           String sql = "UPDATE CARDAPIO SET NM_NOME = ? WHERE CD_CARDAPIO = ?";
           stmt = connection.prepareStatement(sql);
           stmt.setString(1, menu.getName());
+          
+          //PARAMETER WHERE
+          stmt.setInt(4, menu.getIdMenu());
       
           stmt.executeUpdate();
         } catch (SQLException e) {
