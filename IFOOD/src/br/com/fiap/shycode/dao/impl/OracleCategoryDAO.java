@@ -9,8 +9,9 @@ import java.util.List;
 
 import br.com.fiap.shycode.bean.Category;
 import br.com.fiap.shycode.connection.ConnectionDB;
+import br.com.fiap.shycode.dao.CategoryDAO;
 
-public class OracleCategoryDAO {
+public class OracleCategoryDAO implements CategoryDAO {
 private Connection connection;
     
     public void insert(Category category) {

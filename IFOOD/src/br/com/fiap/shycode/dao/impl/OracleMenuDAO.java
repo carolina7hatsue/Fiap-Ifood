@@ -9,8 +9,9 @@ import java.util.List;
 
 import br.com.fiap.shycode.bean.Menu;
 import br.com.fiap.shycode.connection.ConnectionDB;
+import br.com.fiap.shycode.dao.MenuDAO;
 
-public class OracleMenuDAO {
+public class OracleMenuDAO implements MenuDAO {
 	
 	private Connection connection;
     

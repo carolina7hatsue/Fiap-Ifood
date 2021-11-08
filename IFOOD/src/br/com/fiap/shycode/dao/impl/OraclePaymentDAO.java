@@ -9,8 +9,9 @@ import java.util.List;
 
 import br.com.fiap.shycode.bean.Payment;
 import br.com.fiap.shycode.connection.ConnectionDB;
+import br.com.fiap.shycode.dao.PaymentDAO;
 
-public class OraclePaymentDAO {
+public class OraclePaymentDAO implements PaymentDAO {
 private Connection connection;
     
     public void insert(Payment payment) {

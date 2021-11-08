@@ -9,8 +9,9 @@ import java.util.List;
 
 import br.com.fiap.shycode.bean.Image;
 import br.com.fiap.shycode.connection.ConnectionDB;
+import br.com.fiap.shycode.dao.ImageDAO;
 
-public class OracleImageDAO {
+public class OracleImageDAO implements ImageDAO {
 private Connection connection;
     
     public void insert(Image image) {

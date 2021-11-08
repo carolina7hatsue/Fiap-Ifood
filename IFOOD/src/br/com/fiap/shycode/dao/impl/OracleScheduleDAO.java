@@ -10,8 +10,9 @@ import java.util.List;
 
 import br.com.fiap.shycode.bean.Schedule;
 import br.com.fiap.shycode.connection.ConnectionDB;
+import br.com.fiap.shycode.dao.ScheduleDAO;
 
-public class OracleScheduleDAO {
+public class OracleScheduleDAO implements ScheduleDAO {
 private Connection connection;
     
     public void insert(Schedule schedule) {

@@ -9,8 +9,9 @@ import java.util.List;
 
 import br.com.fiap.shycode.bean.Item;
 import br.com.fiap.shycode.connection.ConnectionDB;
+import br.com.fiap.shycode.dao.ItemDAO;
 
-public class OracleItemDAO {
+public class OracleItemDAO implements ItemDAO {
 private Connection connection;
     
     public void insert(Item item) {
