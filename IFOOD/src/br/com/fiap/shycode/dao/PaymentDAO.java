@@ -10,5 +10,5 @@ public interface PaymentDAO {
 	List<Payment> select();
 	void update(Payment payment) throws DBException;
 	void delete(int id) throws DBException;
-	void selectById(int idSearch);
+	public Payment selectById(int idSearch);
 }

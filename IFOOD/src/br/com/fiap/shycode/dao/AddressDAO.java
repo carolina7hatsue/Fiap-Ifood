@@ -11,5 +11,5 @@ public interface AddressDAO {
 	List<Address> select();
 	void update(Address address) throws DBException;
 	void delete(int id) throws DBException;
-	void selectById(int idSearch);
+	public Address selectById(int idSearch);
 }

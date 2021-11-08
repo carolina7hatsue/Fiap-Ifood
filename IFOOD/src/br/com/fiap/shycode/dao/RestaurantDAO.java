@@ -11,6 +11,6 @@ public interface RestaurantDAO {
 	List<Restaurant> select();
 	void update(Restaurant restaurant) throws DBException;
 	void delete(int id) throws DBException;
-	void selectById(int idSearch);
+	public Restaurant selectById(int idSearch);
 	
 }

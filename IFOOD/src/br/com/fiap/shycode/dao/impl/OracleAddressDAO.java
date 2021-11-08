@@ -9,8 +9,9 @@ import java.util.List;
 
 import br.com.fiap.shycode.bean.Address;
 import br.com.fiap.shycode.connection.ConnectionDB;
+import br.com.fiap.shycode.dao.AddressDAO;
 
-public class OracleAddressDAO {
+public class OracleAddressDAO implements AddressDAO {
 	
 	private Connection connection;
     

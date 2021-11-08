@@ -9,8 +9,9 @@ import java.util.List;
 
 import br.com.fiap.shycode.bean.Restaurant;
 import br.com.fiap.shycode.connection.ConnectionDB;
+import br.com.fiap.shycode.dao.RestaurantDAO;
 
-public class OracleRestaurantDAO {
+public class OracleRestaurantDAO implements RestaurantDAO {
 	
 	private Connection connection;
     

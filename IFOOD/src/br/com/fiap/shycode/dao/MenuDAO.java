@@ -11,6 +11,6 @@ public interface MenuDAO {
 	List<Menu> select();
 	void update(Menu menu) throws DBException;
 	void delete(int id) throws DBException;
-	void selectById(int idSearch);
+	public Menu selectById(int idSearch);
 	
 }

@@ -9,6 +9,6 @@ public interface ImageDAO {
 	void insert(Image image) throws DBException;
 	void update(Image image) throws DBException;
 	void delete(int id) throws DBException;
-	void selectById(int idSearch);
+	public Image selectById(int idSearch);
 	List<Image> select();
 }

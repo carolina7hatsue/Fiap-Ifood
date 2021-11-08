@@ -11,5 +11,5 @@ public interface CategoryDAO {
 	List<Category> select();
 	void update(Category category) throws DBException;
 	void delete(int id) throws DBException;
-	void selectById(int idSearch);
+	public Category selectById(int idSearch);
 }

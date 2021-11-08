@@ -10,5 +10,5 @@ public interface ItemDAO {
 	List<Item> select();
 	void update(Item item) throws DBException;
 	void delete(int id) throws DBException;
-	void selectById(int idSearch);
+	public Item selectById(int idSearch);
 }
