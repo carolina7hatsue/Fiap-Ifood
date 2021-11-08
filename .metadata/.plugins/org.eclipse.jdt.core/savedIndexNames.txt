@@ -1,9 +1,0 @@
-INDEX VERSION 1.131+C:\Users\carol\OneDrive - Fiap-Faculdade de Informática e Administração Paulista\ADS\Enterprise Challenge FIAP\Java\.metadata\.plugins\org.eclipse.jdt.core
-4141742874.index
-3773398864.index
-1552173128.index
-4174700568.index
-3090787937.index
-2684629289.index
-2048140011.index
-3883950653.index

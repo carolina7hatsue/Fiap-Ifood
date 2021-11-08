@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring accessors="true" comment="Delete 3 elements from project &apos;IFOOD&apos;&#x0D;&#x0A;- Original project: &apos;IFOOD&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     bootstrap.js&#x0D;&#x0A;     bootstrap.min.js&#x0D;&#x0A;     jquery-3.2.1.min.js" description="Delete elements" element1="WebContent/resources/js/bootstrap.js" element2="WebContent/resources/js/bootstrap.min.js" element3="WebContent/resources/js/jquery-3.2.1.min.js" elements="0" flags="589830" id="org.eclipse.jdt.ui.delete" resources="3" stamp="1636332296053" subPackages="false" version="1.0"/>
-</session>
