@@ -1,6 +1,8 @@
 package br.com.fiap.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,10 +32,34 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		String acao = request.getParameter("cadastro");
-//		
-//	}
+		@Override
+		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			String acao = request.getParameter("acao");
+			
+			switch (acao) {
+			case "listar":
+				listar(request, response);
+				break;
+			case "abrir-form-edicao":
+				abrirFormEdicao(request, response);
+				break;
+			}
+		}
+		
+		private void abrirFormEdicao(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			int id = Integer.parseInt(request.getParameter("codigo"));
+			Restaurant restaurant = dao.selectById(id);
+			request.setAttribute("produto", restaurant);
+			//Criar pagina de edicao de restaurantes
+			//request.getRequestDispatcher("edicao-produto.jsp").forward(request, response);
+		}
+
+		private void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			List<Restaurant> lista = dao.select();
+			request.setAttribute("restaurantes", lista);
+			request.getRequestDispatcher("restaurantes.jsp").forward(request, response);
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
