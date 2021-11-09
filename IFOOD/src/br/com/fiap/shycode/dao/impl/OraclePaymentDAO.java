@@ -78,7 +78,7 @@ private Connection connection;
           stmt.setString(1, payment.getName());
           
           //PARAMETER WHERE
-          stmt.setInt(4, payment.getIdPayment());
+          stmt.setInt(2, payment.getIdPayment());
       
           stmt.executeUpdate();
         } catch (SQLException e) {

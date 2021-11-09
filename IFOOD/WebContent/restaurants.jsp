@@ -18,12 +18,6 @@
 
 				<div class="inner-cover">
 					<h1 class="cover-heading">Restaurantes</h1>
-					<c:if test="${not empty msg }">
-						<div class="alert alert-success">${msg}</div>
-					</c:if>
-					<c:if test="${not empty erro }">
-						<div class="alert alert-danger">${erro}</div>
-					</c:if>
 				</div>
 				
 				<table class="table table-striped">
@@ -32,16 +26,16 @@
 					<th>Valor do Pedido Mínimo</th>
 					<th></th>	
 				</tr>
-				<c:forEach items="${restaurantes }" var="r">
+				<c:forEach items="${restaurant}" var="r">
 				<tr>
 					<td>${r.name}</td>
-					<td>${p.valorMin}</td>
-					<td>
+					<td>${r.valorMin}</td>
+					
 					
 					<!-- ALTERAR codigo entre os comentarios -->
 						<c:url value="produto" var="link">
 							<c:param name="acao" value="abrir-form-edicao"/>
-							<c:param name="codigo" value="${r.codigo }"/>
+							<c:param name="codigo" value="${r.idRestaurant }"/>
 						</c:url>
 					<!-- ALTERAR codigo entre os comentários -->
 					

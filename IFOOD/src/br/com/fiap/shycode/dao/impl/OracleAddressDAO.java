@@ -83,7 +83,7 @@ public class OracleAddressDAO implements AddressDAO {
 	          String country = rs.getString("DS_PAIS");
 	          String complement = rs.getString("DS_COMPLEMENTO");
 	         	          
-	          Address Address = new Address(idAddress,street,district, number, cep, city, state, country, complement);
+	          Address Address = new Address(idAddress, street, district, number, cep, city, state, country, complement);
 	          
 	          list.add(Address);
 	        }

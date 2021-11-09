@@ -12,8 +12,23 @@ public class Address {
 	private String Country;
 	private String Complement;
 	
+
 	public Address() {
-		
+		super();
+	}
+	
+	public Address(int idAddress, String street, String district, int number, int cEP, String city, String state,
+			String country, String complement) {
+		super();
+		IdAddress = idAddress;
+		Street = street;
+		District = district;
+		Number = number;
+		CEP = cEP;
+		City = city;
+		State = state;
+		Country = country;
+		Complement = complement;
 	}
 
 	public int getIdAddress() {
@@ -88,19 +103,7 @@ public class Address {
 		Complement = complement;
 	}
 
-	public Address(int idAddress, String street, String district, int number, int cEP, String city, String state,
-			String country, String complement) {
-		super();
-		IdAddress = idAddress;
-		Street = street;
-		District = district;
-		Number = number;
-		CEP = cEP;
-		City = city;
-		State = state;
-		Country = country;
-		Complement = complement;
-	}
+
 	
 	
 

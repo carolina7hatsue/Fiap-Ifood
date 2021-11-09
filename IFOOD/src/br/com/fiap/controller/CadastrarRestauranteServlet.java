@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.com.fiap.shycode.bean.Address;
 import br.com.fiap.shycode.bean.Restaurant;
+import br.com.fiap.shycode.dao.AddressDAO;
 import br.com.fiap.shycode.dao.RestaurantDAO;
 import br.com.fiap.shycode.exception.DBException;
 import br.com.fiap.shycode.factory.DAOFactory;
@@ -21,12 +23,14 @@ import br.com.fiap.shycode.factory.DAOFactory;
 public class CadastrarRestauranteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private RestaurantDAO dao;
+	private RestaurantDAO daoRestaurant;
+	private AddressDAO daoAddress;
 	
 	@Override
 	public void init() throws ServletException {
 		super.init();
-		dao = DAOFactory.getRestaurantDAO();
+		daoRestaurant = DAOFactory.getRestaurantDAO();
+		daoAddress = DAOFactory.getAddressDAO();
 	}
 	
 	/**
@@ -49,14 +53,16 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 		private void abrirFormEdicao(HttpServletRequest request, HttpServletResponse response)
 				throws ServletException, IOException {
 			int id = Integer.parseInt(request.getParameter("codigo"));
-			Restaurant restaurant = dao.selectById(id);
+			Restaurant restaurant = daoRestaurant.selectById(id);
+			Address address = daoAddress.selectById(id);
+			
 			request.setAttribute("produto", restaurant);
 			//Criar pagina de edicao de restaurantes
 			//request.getRequestDispatcher("edicao-produto.jsp").forward(request, response);
 		}
 
 		private void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			List<Restaurant> lista = dao.select();
+			List<Restaurant> lista = daoRestaurant.select();
 			request.setAttribute("restaurantes", lista);
 			request.getRequestDispatcher("restaurantes.jsp").forward(request, response);
 		}
@@ -64,14 +70,45 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	protected void doPost(HttpServletRequest request, HttpServeletResponse response)
+		throws ServletException, IOException {
+		
+		String acao = request.getParameter("acao");
+		
+		switch (acao) {
+		case "cadastrar":
+			cadastrar(request, response);
+			break;
+		case "editar":
+			editar(request, response);
+			break;
+		}
+	}
+		
+		
+	protected void cadastrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try{
-			String nome = request.getParameter("nome");
-			float preco = Float.parseFloat(request.getParameter("valor"));
+			String name = request.getParameter("nome");
+			float minPrice = Float.parseFloat(request.getParameter("valor"));
 			
-			Restaurant restaurant = new Restaurant(1, nome, preco); 
-			dao.insert(restaurant);
+			String street = request.getParameter("rua");
+			String district = request.getParameter("bairro");
+			int number = Integer.parseInt(request.getParameter("numero"));
+			int cEP = Integer.parseInt(request.getParameter("cep"));
+			String city = request.getParameter("cidade");
+			String state = request.getParameter("estado");
+			String country = request.getParameter("pais");
+			String complement = request.getParameter("complemento");
+			
+			//Request de Category
+			
+			Restaurant restaurant = new Restaurant(1, name, minPrice); 
+			daoRestaurant.insert(restaurant);
+			
+			Address address = new Address(1, street, district, number, cEP, city, state, country, complement);
+			daoAddress.insert(address);
 			
 			request.setAttribute("msg", "Produto cadastrado!");
 		}catch(DBException db) {
@@ -82,6 +119,40 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 			request.setAttribute("erro","Por favor, valide os dados");
 		}
 		request.getRequestDispatcher("cadastro.jsp").forward(request, response);
+	}
+	
+	private void editar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			int idRestaurant = Integer.parseInt(request.getParameter(""));
+			String name = request.getParameter("nome");
+			float minPrice = Float.parseFloat(request.getParameter("valor"));
+			
+			int idAddress = Integer.parseInt(request.getParameter(""));
+			String street = request.getParameter("rua");
+			String district = request.getParameter("bairro");
+			int number = Integer.parseInt(request.getParameter("numero"));
+			int cEP = Integer.parseInt(request.getParameter("cep"));
+			String city = request.getParameter("cidade");
+			String state = request.getParameter("estado");
+			String country = request.getParameter("pais");
+			String complement = request.getParameter("complemento");
+			
+			//Request de Category
+			Restaurant restaurant = new Restaurant(idRestaurant, name, minPrice); 
+			daoRestaurant.insert(restaurant);
+			
+			Address address = new Address(idAddress, street, district, number, cEP, city, state, country, complement);
+			daoAddress.insert(address);
+
+			request.setAttribute("msg", "Produto atualizado!");
+		} catch (DBException db) {
+			db.printStackTrace();
+			request.setAttribute("erro", "Erro ao atualizar");
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("erro", "Por favor, valide os dados");
+		}
+		listar(request,response);
 	}
 	
 	

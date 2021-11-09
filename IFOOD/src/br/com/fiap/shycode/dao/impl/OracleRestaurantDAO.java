@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.fiap.shycode.bean.Address;
+import br.com.fiap.shycode.bean.Category;
 import br.com.fiap.shycode.bean.Restaurant;
 import br.com.fiap.shycode.connection.ConnectionDB;
 import br.com.fiap.shycode.dao.RestaurantDAO;
@@ -20,10 +22,14 @@ public class OracleRestaurantDAO implements RestaurantDAO {
       
           try {
             connection = ConnectionDB.obtainConnection();
-            String sql = "INSERT INTO RESTAURANTE(CD_RESTAURANTE, NM_RESTAURANTE, VL_PEDIDO_MIN) VALUES (SQ_RESTAURANTE.NEXTVAL, ?, ?)";
+            String sql = "INSERT INTO RESTAURANTE(CD_RESTAURANTE, NM_RESTAURANTE, VL_PEDIDO_MIN, VL_CNPJ, CD_ENDERECO, CD_TIPO) VALUES (SQ_RESTAURANTE.NEXTVAL, ?, ?, ?, ?, ?)";
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, restaurant.getName());
             stmt.setFloat(2, restaurant.getMinPrice());
+            stmt.setInt(3, restaurant.getCNPJ());
+            stmt.setInt(4, restaurant.getAddress().getIdAddress());
+            stmt.setInt(5, restaurant.getCategory().getIdCategory());
+            
       
             stmt.executeUpdate();
           } catch (SQLException e) {
@@ -44,16 +50,37 @@ public class OracleRestaurantDAO implements RestaurantDAO {
 	      ResultSet rs = null;
 	      try {
 	    	connection = ConnectionDB.obtainConnection();
-	        stmt = connection.prepareStatement("SELECT * FROM RESTAURANTE");
+	        stmt = connection.prepareStatement("SELECT * FROM RESTAURANTE INNER JOIN ENDERECO ON RESTAURANTE.CD_ENDERECO = ENDERECO.CD_ENDERECO"
+	        		+ "INNER JOIN CATEGORIA ON RESTAURANTE.CD_TIPO = CATEGORIA.CD_TIPO");
 	        rs = stmt.executeQuery();
 	    
 	        while (rs.next()) {
 	          int idRestaurant = rs.getInt("CD_RESTAURANTE");
-	          String name = rs.getString("NM_RESTAURANTE");
+	          String nameRestaurant = rs.getString("NM_RESTAURANTE");
 	          float valorMin = rs.getFloat("VL_PEDIDO_MIN");
-	         	          
-	          Restaurant restaurant = new Restaurant(idRestaurant, name, valorMin);
+	          int cNPJ = rs.getInt("VL_CNPJ");
 	          
+	          int idAddress = rs.getInt("CD_ENDERECO");
+	          String street = rs.getString("DS_LOGRADOURO");
+	          String district = rs.getString("DS_BAIRRO");
+	          int number = rs.getInt("VL_NUMERO");
+	          int cep = rs.getInt("DS_CEP");
+	          String city = rs.getString("DS_CIDADE");
+	          String state = rs.getString("DS_ESTADO");
+	          String country = rs.getString("DS_PAIS");
+	          String complement = rs.getString("DS_COMPLEMENTO");
+	          
+	          int idCategory = rs.getInt("CD_CATEGORIA");
+	          String nameCategory = rs.getString("DS_NOME");
+	         	       
+	         	          
+	          Restaurant restaurant = new Restaurant(idRestaurant, nameRestaurant, valorMin, cNPJ);
+	          
+	          Address address = new Address(idAddress, street, district, number, cep, city, state, country, complement);	  
+	        		  
+	          Category category = new Category(idCategory, nameCategory);
+	          restaurant.setAddress(address);
+	          restaurant.setCategory(category);
 	          list.add(restaurant);
 	        }
 	      } catch (SQLException e) {
@@ -76,13 +103,16 @@ public class OracleRestaurantDAO implements RestaurantDAO {
       
         try {
       	connection = ConnectionDB.obtainConnection();
-          String sql = "UPDATE RESTAURANTE SET NM_RESTAURANTE = ?, VL_PEDIDO_MIN = ? WHERE CD_RESTAURANTE = ?";
+          String sql = "UPDATE RESTAURANTE SET NM_RESTAURANTE = ?, VL_PEDIDO_MIN = ?, VL_CNPJ = ?, CD_ENDERECO = ?, CD_TIPO = ?  WHERE CD_RESTAURANTE = ?";
           stmt = connection.prepareStatement(sql);
           stmt.setString(1, restaurant.getName());
           stmt.setFloat(2, restaurant.getMinPrice());
+          stmt.setInt(3, restaurant.getCNPJ());
+          stmt.setInt(4, restaurant.getAddress().getIdAddress());
+          stmt.setInt(5, restaurant.getCategory().getIdCategory());
           
           //PARAMETER WHERE
-          stmt.setInt(4, restaurant.getIdRestaurant());
+          stmt.setInt(6, restaurant.getIdRestaurant());
       
           stmt.executeUpdate();
         } catch (SQLException e) {
@@ -124,15 +154,35 @@ public class OracleRestaurantDAO implements RestaurantDAO {
         ResultSet rs = null;
         try {
       	connection = ConnectionDB.obtainConnection();
-          stmt = connection.prepareStatement("SELECT * FROM RESTAURANTE WHERE CD_RESTAURANTE = ?");
+          stmt = connection.prepareStatement("SELECT * FROM RESTAURANTE INNER JOIN ENDERECO ON RESTAURANTE.CD_ENDERECO = ENDERECO.CD_ENDERECO "
+          		+ "INNER JOIN CATEGORIA ON RESTAURANTE.CD_TIPO = CATEGORIA.CD_TIPO WHERE RESTAURANTE.CD_RESTAURANTE");
           stmt.setInt(1, idSearch);
           rs = stmt.executeQuery();
       
           if (rs.next()){
-        	  int idRestaurant = rs.getInt("CD_RESTAURANTE");
-   	          String name = rs.getString("NM_RESTAURANTE");
-   	          float valorMin = rs.getFloat("VL_PEDIDO_MIN");
-            restaurant = new Restaurant(idRestaurant, name, valorMin);
+   	       	  int idRestaurant = rs.getInt("CD_RESTAURANTE");
+	          String nameRestaurant = rs.getString("NM_RESTAURANTE");
+	          float valorMin = rs.getFloat("VL_PEDIDO_MIN");
+	          int cNPJ = rs.getInt("VL_CNPJ");
+	          
+	          int idAddress = rs.getInt("CD_ENDERECO");
+	          String street = rs.getString("DS_LOGRADOURO");
+	          String district = rs.getString("DS_BAIRRO");
+	          int number = rs.getInt("VL_NUMERO");
+	          int cep = rs.getInt("DS_CEP");
+	          String city = rs.getString("DS_CIDADE");
+	          String state = rs.getString("DS_ESTADO");
+	          String country = rs.getString("DS_PAIS");
+	          String complement = rs.getString("DS_COMPLEMENTO");
+	          
+	          int idCategory = rs.getInt("CD_CATEGORIA");
+	          String nameCategory = rs.getString("DS_NOME");
+	          
+	          restaurant = new Restaurant(idRestaurant, nameRestaurant, valorMin, cNPJ);
+	          Address address = new Address(idAddress, street, district, number, cep, city, state, country, complement);	  
+	          Category category = new Category(idCategory, nameCategory);
+	          restaurant.setAddress(address);
+	          restaurant.setCategory(category);
           }
           
         } catch (SQLException e) {

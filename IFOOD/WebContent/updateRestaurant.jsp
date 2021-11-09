@@ -5,7 +5,7 @@
 
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-            <title>Cadastro - JSPs</title>
+            <title>Edição - JSPs</title>
             <%@ include file="header.jsp" %>			
 		</head>
 
@@ -16,7 +16,7 @@
                         <%@ include file="menu.jsp" %>
 
                             <div class="inner-cover">
-                                <h1>Cadastro de Produto</h1>
+                                <h1>Edição Restaurante</h1>
                                 <c:if test="${not empty msg }">
                                     <div class="alert alert-success">${msg}</div>
                                 </c:if>
@@ -25,6 +25,8 @@
                                 </c:if>
 
                                 <form action="cadastro" method="post">
+                                	<input type="hidden" value="editar" name="acao">
+                                	<input type="hidden" value="${restaurant.id}" name="codigo">
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item"><a class="nav-link active" id="home-tab" data-toggle="tab"
                                                 href="#home" role="tab" aria-controls="home"
@@ -43,67 +45,60 @@
                                             aria-labelledby="home-tab">
                                             <input type="hidden" value="cadastrar" name="acao">
                                             <div class="form-group">
-                                                <label for="id-nome">Nome</label> <input type="text" name="nome"
-                                                    id="id-nome" class="form-control">
+                                                <label for="id-nome">Nome</label> 
+                                                <input type="text" name="nome" id="id-nome" class="form-control" value="${restaurant.name}">
                                             </div>
                                             <div class="form-group">
-                                                <label for="id-valor">Valor Mínimo</label> <input type="text"
-                                                    name="valor" id="id-valor" class="form-control">
-                                            </div>
-                                             <div class="form-group">
-                                                <label for="id-valor">Rua</label> <input type="text"
-                                                    name="rua" id="id-valor" class="form-control">
-                                            </div>
-                                            
+                                                <label for="id-valor">Valor Mínimo</label> 
+                                                <input type="text" name="valor" id="id-valor" class="form-control" value="${restauante.minPrice}">
+                                            </div>                 
                                         </div>
 
                                         <div class="tab-pane fade" id="perfil" role="tabpanel"
                                             aria-labelledby="profile-tab">
                                             <input type="hidden" value="cadastrar" name="acao">
 
-                                            <div style="display: flex;justify-content: space-between;">
-                                                <div class="form-group">
-                                                    <label for="formGroupExampleInput">Logradouro</label>
-                                                    <input name="logradouro" type="text" class="form-control"
-                                                        id="logradouro" placeholder="Digite o Logradouro">
-                                                </div>
+											<div class="form-group">
+                                                <label for="id-valor">Rua</label> 
+                                                <input type="text" name="rua" id="id-valor" class="form-control" value="${address.street}">
+                                            </div>
                                                 <div class="form-group">
                                                     <label for="formGroupExampleInput2">Número</label>
                                                     <input name="numero" type="text" class="form-control" id="numero"
-                                                        placeholder="Digite o Número">
+                                                        placeholder="Digite o Número" value="${address.number}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="formGroupExampleInput2">Cep</label>
                                                     <input name="cep" type="text" class="form-control" id="cep"
-                                                        placeholder="Digite o Cep">
+                                                        placeholder="Digite o Cep" value="${address.cEP}">
                                                 </div>
                                             </div>
                                             <div style="display: flex;justify-content: space-between;">
                                                 <div class="form-group">
                                                     <label for="formGroupExampleInput">Bairro</label>
                                                     <input name="bairro" type="text" class="form-control" id="bairro"
-                                                        placeholder="Digite o Bairro">
+                                                        placeholder="Digite o Bairro" value="${address.district}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="formGroupExampleInput2">Cidade</label>
                                                     <input name="cidade" type="text" class="form-control" id="cidade"
-                                                        placeholder="Digite a Cidade">
+                                                        placeholder="Digite a Cidade" value="${address.city}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="formGroupExampleInput2">Estado</label>
                                                     <input name="estado" type="text" class="form-control" id="estado"
-                                                        placeholder="Digite o Estado">
+                                                        placeholder="Digite o Estado" value="${address.state}">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="formGroupExampleInput2">País</label>
                                                     <input name="pais" type="text" class="form-control" id="pais"
-                                                        placeholder="Digite o País">
+                                                        placeholder="Digite o País" value="${address.country}">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label for="formGroupExampleInput2">Complemento</label>
                                                 <input name="complemento" type="text" class="form-control"
-                                                    id="complemento" placeholder="Digite o Complemento">
+                                                    id="complemento" placeholder="Digite o Complemento" value="${address.complement}">
                                             </div>
                                         </div>
 
@@ -119,13 +114,12 @@
 											</select>
 										</div>
                                     </div>
-                                    
                                     <input type="submit" value="Salvar" class="btn btn-primary">
+                                    <a href="produto?acao=listar" class="btn btn-danger">Cancelar</a>
                                 </form>
                             </div>
                     </div>
                 </div>
-
             </div>
             <%@ include file="footer.jsp" %>
         </body>
