@@ -28,4 +28,21 @@
 		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.eclipse.wst.jsdt.core.jsNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>WebContent/resources/images</name>
+			<type>2</type>
+			<location>C:/Users/55119/Desktop/Ifood/Fiap-Ifood/IFOOD/WebContent/resources/images</location>
+		</link>
+		<link>
+			<name>WebContent/resources/js/lib</name>
+			<type>2</type>
+			<location>C:/Users/55119/Desktop/layout-ifood/js/lib</location>
+		</link>
+		<link>
+			<name>WebContent/resources/js/script.js</name>
+			<type>1</type>
+			<location>C:/Users/55119/Desktop/layout-ifood/js/script.js</location>
+		</link>
+	</linkedResources>
 </projectDescription>

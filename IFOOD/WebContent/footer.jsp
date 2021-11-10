@@ -3,11 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script type="text/javascript" src="resources/js/jquery-3.2.1.min.js"></script>
-<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
+
+  <footer class="site-footer bg-secondary text-light d-flex justify-content-center">
+
+    <section class="layout-social py-5">
+      <div style="display: flex;">
+        <img width="75px" src="resources/images/footer-logo-ifood.jpg" />
+        <div style="align-self: flex-end;">
+          <p class="p-footer">© ShyCode 2021 - iFood - Enterprise Challenge IFOOD</p>
+        </div>
+      </div>
+    </section>
+  </footer>
 </body>
 </html>

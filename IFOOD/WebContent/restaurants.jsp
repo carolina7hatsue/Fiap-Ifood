@@ -10,7 +10,6 @@
 <%@ include file="header.jsp" %>
 </head>
 <body>
-<%@ include file="menu.jsp" %>
 	<div class="container">
 		<h1>Restaurantes</h1>
 		<c:if test="${not empty msg }">
