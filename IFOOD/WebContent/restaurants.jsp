@@ -30,10 +30,10 @@
 			</tr>
 			<c:forEach items="${restaurantes }" var="p">
 				<tr>
-					<td>${p.Name}</td>
-					<td>${p.MinPrice}</td>
+					<td>${p.name}</td>
+					<td>${p.minPrice}</td>
 					<td>${p.CNPJ}</td>
-					<td>${p.category.nameCategory}</td>
+					<td>${p.category.name}</td>
 					<td>
 						<c:url value="cadastro" var="link">
 							<c:param name="acao" value="abrir-form-edicao"/>
@@ -65,7 +65,7 @@
         		Deseja realmente excluir o produto?
       </div>
       <div class="modal-footer">
-      	<form action="produto" method="post">
+      	<form action="cadastro" method="post">
       		<input type="hidden" name="acao" value="excluir">
       		<input type="hidden" name="codigo" id="codigoExcluir">
 	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
