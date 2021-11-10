@@ -20,10 +20,10 @@ public class OracleAddressDAO implements AddressDAO {
       
           try {
             connection = ConnectionDB.obtainConnection();
-            String sql = "INSERT INTO ("
+            String sql = "INSERT INTO ENDERECO ("
             		+ "CD_ENDERECO,"
             		+ "DS_LOGRADOURO,"
-            		+ "DS_BAIRRO"
+            		+ "DS_BAIRRO,"
             		+ "VL_NUMERO,"
             		+ "DS_CEP,"
             		+ "DS_CIDADE,"
@@ -69,7 +69,7 @@ public class OracleAddressDAO implements AddressDAO {
 	      ResultSet rs = null;
 	      try {
 	    	connection = ConnectionDB.obtainConnection();
-	        stmt = connection.prepareStatement("SELECT * FROM ENDERECO");
+	        stmt = connection.prepareStatement("SELECT * FROM ENDERECO ORDER BY CD_ENDERECO DESC");
 	        rs = stmt.executeQuery();
 	    
 	        while (rs.next()) {

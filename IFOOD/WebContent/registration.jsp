@@ -111,15 +111,15 @@
                                         </div>
 
 										<!-- Categorias -->
-                                        <div class="tab-pane fade" id="contato" role="tabpanel"
-                                            aria-labelledby="contact-tab">
-                                            
-											<select class="form-select" aria-label="Default select example" id="id-categoria" name="categoria">
-											  <option value="0">Selecione</option>
+                                        <div class="tab-pane fade" id="contato" role="tabpanel" aria-labelledby="contact-tab">
+                                           <div class="form-group">
+                                           	<select name="categoria" id="id-categoria" class="form-control">
+												<option value="0">Selecione</option>
 											  <c:forEach items="${categorias }" var="c">
 											  	<option value="${c.idCategory}">${c.name }</option>
 											  </c:forEach>
 											</select>
+                                           </div>		
 										</div>
                                     </div>
                                     

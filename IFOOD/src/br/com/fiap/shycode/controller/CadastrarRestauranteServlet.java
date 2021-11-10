@@ -2,6 +2,7 @@ package br.com.fiap.shycode.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -67,12 +68,12 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 				throws ServletException, IOException {
 			int idRestaurant = Integer.parseInt(request.getParameter("codigo"));
 			Restaurant restaurant = daoRestaurant.selectById(idRestaurant);
-			request.setAttribute("restaurant", restaurant);
+			request.setAttribute("restaurantes", restaurant);
 			carregarOpcoesCategoria(request);
 			request.getRequestDispatcher("updateRestaurant.jsp").forward(request, response);
 			///Address address = daoAddress.selectById(idAddress);
 			
-			request.setAttribute("produto", restaurant);
+			//request.setAttribute("produto", restaurant);
 			//Criar pagina de edicao de restaurantes
 		}
 		
@@ -132,17 +133,17 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 			Category category = new Category();
 			category.setIdCategory(idCategory);
 			
-			Restaurant restaurant = new Restaurant(0, name, minPrice, cNPJ); 
-			daoRestaurant.insert(restaurant);
-			restaurant.setCategory(category);
-			
 			Address address = new Address(0, street, district, number, cEP, city, state, country, complement);
 			daoAddress.insert(address);
-			restaurant.setAddress(address);
+			var listAddress = daoAddress.select();
+			var selectFirst = listAddress.get(0);
+			
+			Restaurant restaurant = new Restaurant(0, name, minPrice, cNPJ, selectFirst); 
+			restaurant.setCategory(category);
 			
 			daoRestaurant.insert(restaurant);
 			
-			request.setAttribute("msg", "Produto cadastrado!");
+			request.setAttribute("msg", "Restaurante cadastrado!");
 		}catch(DBException db) {
 			db.printStackTrace();
 			request.setAttribute("erro", "Erro ao cadastrar");
@@ -181,7 +182,7 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 			Address address = new Address(idAddress, street, district, number, cEP, city, state, country, complement);
 			daoAddress.insert(address);
 
-			request.setAttribute("msg", "Produto atualizado!");
+			request.setAttribute("msg", "Restaurante atualizado!");
 		} catch (DBException db) {
 			db.printStackTrace();
 			request.setAttribute("erro", "Erro ao atualizar");

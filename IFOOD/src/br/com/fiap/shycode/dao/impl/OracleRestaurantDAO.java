@@ -59,7 +59,7 @@ public class OracleRestaurantDAO implements RestaurantDAO {
 	          String nameRestaurant = rs.getString("NM_RESTAURANTE");
 	          float valorMin = rs.getFloat("VL_PEDIDO_MIN");
 	          int cNPJ = rs.getInt("VL_CNPJ");
-	          
+          
 	          int idAddress = rs.getInt("CD_ENDERECO");
 	          String street = rs.getString("DS_LOGRADOURO");
 	          String district = rs.getString("DS_BAIRRO");
@@ -155,7 +155,7 @@ public class OracleRestaurantDAO implements RestaurantDAO {
         try {
       	connection = ConnectionDB.obtainConnection();
           stmt = connection.prepareStatement("SELECT * FROM RESTAURANTE INNER JOIN ENDERECO ON RESTAURANTE.CD_ENDERECO = ENDERECO.CD_ENDERECO "
-          		+ "INNER JOIN CATEGORIA ON RESTAURANTE.CD_TIPO = CATEGORIA.CD_TIPO WHERE RESTAURANTE.CD_RESTAURANTE");
+          		+ "INNER JOIN CATEGORIA ON RESTAURANTE.CD_TIPO = CATEGORIA.CD_TIPO WHERE RESTAURANTE.CD_RESTAURANTE = ?");
           stmt.setInt(1, idSearch);
           rs = stmt.executeQuery();
       
@@ -175,7 +175,7 @@ public class OracleRestaurantDAO implements RestaurantDAO {
 	          String country = rs.getString("DS_PAIS");
 	          String complement = rs.getString("DS_COMPLEMENTO");
 	          
-	          int idCategory = rs.getInt("CD_CATEGORIA");
+	          int idCategory = rs.getInt("CD_TIPO");
 	          String nameCategory = rs.getString("DS_NOME");
 	          
 	          restaurant = new Restaurant(idRestaurant, nameRestaurant, valorMin, cNPJ);

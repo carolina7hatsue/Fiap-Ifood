@@ -21,6 +21,15 @@ public class Restaurant {
 		CNPJ = cNPJ;
 	}
 	
+	public Restaurant(int idRestaurant, String name, float minPrice, int cNPJ, Address address) {
+		super();
+		IdRestaurant = idRestaurant;
+		Name = name;
+		MinPrice = minPrice;
+		CNPJ = cNPJ;
+		this.address = address;
+	}
+	
 	public int getIdRestaurant() {
 		return IdRestaurant;
 	}
