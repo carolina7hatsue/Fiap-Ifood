@@ -68,12 +68,11 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 			int idRestaurant = Integer.parseInt(request.getParameter("codigo"));
 			Restaurant restaurant = daoRestaurant.selectById(idRestaurant);
 			request.setAttribute("restaurantes", restaurant);
+			
 			carregarOpcoesCategoria(request);
 			request.getRequestDispatcher("updateRestaurant.jsp").forward(request, response);
-			///Address address = daoAddress.selectById(idAddress);
 			
-			//request.setAttribute("produto", restaurant);
-			//Criar pagina de edicao de restaurantes
+			request.setAttribute("endereco", restaurant.getAddress());
 		}
 		
 		private void abrirFormCadastro(HttpServletRequest request, HttpServletResponse response)
