@@ -50,8 +50,9 @@ public class OracleRestaurantDAO implements RestaurantDAO {
 	      ResultSet rs = null;
 	      try {
 	    	connection = ConnectionDB.obtainConnection();
-	        stmt = connection.prepareStatement("SELECT * FROM RESTAURANTE INNER JOIN ENDERECO ON RESTAURANTE.CD_ENDERECO = ENDERECO.CD_ENDERECO"
-	        		+ "INNER JOIN CATEGORIA ON RESTAURANTE.CD_TIPO = CATEGORIA.CD_TIPO");
+	        stmt = connection.prepareStatement("SELECT * FROM RESTAURANTE"
+	        		+ " INNER JOIN ENDERECO ON RESTAURANTE.CD_ENDERECO = ENDERECO.CD_ENDERECO"
+	        		+ " INNER JOIN CATEGORIA ON RESTAURANTE.CD_TIPO = CATEGORIA.CD_TIPO");
 	        rs = stmt.executeQuery();
 	    
 	        while (rs.next()) {

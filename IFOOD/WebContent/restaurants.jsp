@@ -30,10 +30,10 @@
 			</tr>
 			<c:forEach items="${restaurantes }" var="p">
 				<tr>
-					<td>${p.name}</td>
-					<td>${p.valor}</td>
-					<td>${p.cnpj}</td>
-					<td>${p.category.name}</td>
+					<td>${p.Name}</td>
+					<td>${p.MinPrice}</td>
+					<td>${p.CNPJ}</td>
+					<td>${p.category.nameCategory}</td>
 					<td>
 						<c:url value="cadastro" var="link">
 							<c:param name="acao" value="abrir-form-edicao"/>
