@@ -123,7 +123,7 @@
 										</div>
                                     </div>
                                     <input type="submit" value="Salvar" class="btn btn-primary">
-                                    <a href="produto?acao=listar" class="btn btn-danger">Cancelar</a>
+                                    <a href="cadastro?acao=listar" class="btn btn-danger">Cancelar</a>
                                 </form>
                             </div>
                     </div>

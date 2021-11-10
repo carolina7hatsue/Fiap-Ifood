@@ -196,10 +196,10 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 	
 	public void excluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
 		int idRestaurant = Integer.parseInt(request.getParameter("codigo"));
-		//int idAddress = 
+		// Deletar address tb?
 		try {
 			daoRestaurant.delete(idRestaurant);
-			//daoAddress.delete(idAddress);
+			// daoAddress.delete(idAddress);?
 			request.setAttribute("msg", "Produto removido!");
 		} catch (DBException e) {
 			e.printStackTrace();

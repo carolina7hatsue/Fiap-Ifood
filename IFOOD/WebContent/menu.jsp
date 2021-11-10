@@ -24,7 +24,6 @@
         <a class="nav-link" href="cadastro?acao=abrir-form-cadastro">Cadastro</a>
       </li>
       <li class="nav-item">
-        <!-- <a class="nav-link" href="restaurants?acao=listar">Restaurantes</a> -->
         <a class="nav-link" href="cadastro?acao=listar">Restaurantes</a>
       </li>
       <li class="nav-item dropdown">

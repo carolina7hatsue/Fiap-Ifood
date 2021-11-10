@@ -132,7 +132,7 @@ public class OracleRestaurantDAO implements RestaurantDAO {
         PreparedStatement stmt = null;
       
         try {
-      	connection = ConnectionDB.obtainConnection();
+          connection = ConnectionDB.obtainConnection();
           String sql = "DELETE FROM RESTAURANTE WHERE CD_RESTAURANTE = ?";
           stmt = connection.prepareStatement(sql);
           stmt.setInt(1, id);

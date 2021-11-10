@@ -28,19 +28,19 @@
 				<th>Categoria</th>
 				<th></th>	
 			</tr>
-			<c:forEach items="${restaurantes }" var="p">
+			<c:forEach items="${restaurantes }" var="r">
 				<tr>
-					<td>${p.name}</td>
-					<td>${p.minPrice}</td>
-					<td>${p.CNPJ}</td>
-					<td>${p.category.name}</td>
+					<td>${r.name}</td>
+					<td>${r.minPrice}</td>
+					<td>${r.CNPJ}</td>
+					<td>${r.category.name}</td>
 					<td>
 						<c:url value="cadastro" var="link">
 							<c:param name="acao" value="abrir-form-edicao"/>
-							<c:param name="codigo" value="${p.idRestaurant }"/>
+							<c:param name="codigo" value="${r.idRestaurant}"/>
 						</c:url>
 						<a href="${link}" class="btn btn-primary btn-xs">Editar</a>
-						<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#excluirModal" onclick="codigoExcluir.value = ${p.idRestaurant}">
+						<button type="button" class="btn btn-danger btn-xs" data-toggle="modal" data-target="#excluirModal" onclick="codigoExcluir.value = ${r.idRestaurant}">
   							Excluir
 						</button>
 					</td>
