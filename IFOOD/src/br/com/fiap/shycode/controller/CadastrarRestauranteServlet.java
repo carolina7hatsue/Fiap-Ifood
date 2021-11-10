@@ -108,7 +108,59 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 		}
 	}
 		
-		
+	public void excluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
+		int idRestaurant = Integer.parseInt(request.getParameter("codigo"));
+		// Deletar address tb?
+		try {
+			daoRestaurant.delete(idRestaurant);
+			// daoAddress.delete(idAddress);?
+			request.setAttribute("msg", "Restaurante removido!");
+		} catch (DBException e) {
+			e.printStackTrace();
+			request.setAttribute("erro", "Erro ao excluir");
+		}
+		listar(request, response);
+	}
+	
+	private void editar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			int idRestaurant = Integer.parseInt(request.getParameter("codigo"));
+			String name = request.getParameter("nome");
+			float minPrice = Float.parseFloat(request.getParameter("valor"));
+			int cNPJ = Integer.parseInt(request.getParameter("cnpj"));
+			
+			int idAddress = Integer.parseInt(request.getParameter("codigoEndereco"));
+			String street = request.getParameter("rua");
+			String district = request.getParameter("bairro");
+			int number = Integer.parseInt(request.getParameter("numero"));
+			int cEP = Integer.parseInt(request.getParameter("cep"));
+			String city = request.getParameter("cidade");
+			String state = request.getParameter("estado");
+			String country = request.getParameter("pais");
+			String complement = request.getParameter("complemento");
+			
+			int idCategory = Integer.parseInt(request.getParameter("categoria"));
+			
+			Category category = new Category();
+			category.setIdCategory(idCategory);
+			
+			Restaurant restaurant = new Restaurant(idRestaurant, name, minPrice, cNPJ); 
+			daoRestaurant.insert(restaurant);
+			
+			Address address = new Address(idAddress, street, district, number, cEP, city, state, country, complement);
+			daoAddress.insert(address);
+
+			request.setAttribute("msg", "Restaurante atualizado!");
+		} catch (DBException db) {
+			db.printStackTrace();
+			request.setAttribute("erro", "Erro ao atualizar");
+		} catch (Exception e) {
+			e.printStackTrace();
+			request.setAttribute("erro", "Por favor, valide os dados");
+		}
+		listar(request, response);
+	}
+
 	protected void cadastrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try{
@@ -150,60 +202,6 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 			request.setAttribute("erro","Por favor, valide os dados");
 		}
 		abrirFormCadastro(request, response);
-	}
-	
-	private void editar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			int idRestaurant = Integer.parseInt(request.getParameter("codigo"));
-			String name = request.getParameter("nome");
-			float minPrice = Float.parseFloat(request.getParameter("valor"));
-			int cNPJ = Integer.parseInt(request.getParameter("cnpj"));
-			
-			int idAddress = Integer.parseInt(request.getParameter("codigoEndereco"));
-			String street = request.getParameter("rua");
-			String district = request.getParameter("bairro");
-			int number = Integer.parseInt(request.getParameter("numero"));
-			int cEP = Integer.parseInt(request.getParameter("cep"));
-			String city = request.getParameter("cidade");
-			String state = request.getParameter("estado");
-			String country = request.getParameter("pais");
-			String complement = request.getParameter("complemento");
-			
-			int idCategory = Integer.parseInt(request.getParameter("categoria"));
-			
-			Category category = new Category();
-			category.setIdCategory(idCategory);
-			
-			Restaurant restaurant = new Restaurant(idRestaurant, name, minPrice, cNPJ); 
-			daoRestaurant.insert(restaurant);
-			
-			Address address = new Address(idAddress, street, district, number, cEP, city, state, country, complement);
-			daoAddress.insert(address);
-
-			request.setAttribute("msg", "Restaurante atualizado!");
-		} catch (DBException db) {
-			db.printStackTrace();
-			request.setAttribute("erro", "Erro ao atualizar");
-		} catch (Exception e) {
-			e.printStackTrace();
-			request.setAttribute("erro", "Por favor, valide os dados");
-		}
-		listar(request, response);
-	}
-	
-	
-	public void excluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
-		int idRestaurant = Integer.parseInt(request.getParameter("codigo"));
-		// Deletar address tb?
-		try {
-			daoRestaurant.delete(idRestaurant);
-			// daoAddress.delete(idAddress);?
-			request.setAttribute("msg", "Produto removido!");
-		} catch (DBException e) {
-			e.printStackTrace();
-			request.setAttribute("erro", "Erro ao excluir");
-		}
-		listar(request, response);
 	}
 
 }

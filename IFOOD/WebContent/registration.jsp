@@ -9,12 +9,8 @@
 		</head>
 
         <body>
-            <div class="site-wrapper">
-                <div class="site-wrapper-inner">
                     <div class="container">
                         <%@ include file="menu.jsp" %>
-
-                            <div class="inner-cover">
                                 <h1>Cadastro de Produto</h1>
                                 <c:if test="${not empty msg }">
                                     <div class="alert alert-success">${msg}</div>
@@ -126,10 +122,6 @@
                                     <a href="restaurants?acao=listar" class="btn-danger"Cancelar></a>
                                 </form>
                             </div>
-                    </div>
-                </div>
-
-            </div>
             <%@ include file="footer.jsp" %>
         </body>
 
