@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,7 +75,8 @@
           <h4 class="sub-title-food" style="align-self: flex-end;margin-left: 20px;">Cadastro de Restaurante</h4>
         </div>
         <hr style="width: 100%;">
-        <form class="form-restaurant">
+        <form class="form-restaurant" action="cadastro" method="post">
+          <input type="hidden" value="cadastrar" name="acao">
           <div style="display: flex;margin-bottom: 10px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" style="color: #ffc107;" fill="currentColor"
               class="bi bi-shop" viewBox="0 0 16 16">
@@ -86,7 +88,7 @@
           <div class="form-row">
             <div class="col-md-4 mb-3">
               <label for="validationServer01">Nome</label>
-              <input type="text" class="form-control is-valid" id="validationName" placeholder="Nome"
+              <input type="text" class="form-control is-valid" id="nome" name="nome" placeholder="Nome"
                 value="Burger King" required>
               <div class="valid-feedback">
                 Tudo certo!
@@ -94,7 +96,7 @@
             </div>
             <div class="col-md-4 mb-3">
               <label for="validationServer01">Valor min. do pedido</label>
-              <input type="text" class="form-control is-valid" id="validationValueMin"
+              <input type="text" class="form-control is-valid" id="valor" name="valor"
                 placeholder="Digite um valor minimo de pedido" value="R$20,00" required>
               <div class="valid-feedback">
                 Tudo certo!
@@ -113,7 +115,7 @@
           <div class="form-row">
             <div class="col-md-4 mb-3">
               <label for="validationServer01">Logradouro</label>
-              <input type="text" class="form-control is-valid" id="validationLogradouro" placeholder="Logradouro"
+              <input type="text" class="form-control is-valid" id="logradouro" name="logradouro" placeholder="Logradouro"
                 value="Avenida Paulista" required>
               <div class="valid-feedback">
                 Tudo certo!
@@ -121,7 +123,7 @@
             </div>
             <div class="col-md-4 mb-3">
               <label for="validationServer02">Bairro</label>
-              <input type="text" class="form-control is-valid" id="validationBairro" placeholder="Bairro"
+              <input type="text" class="form-control is-valid" id="bairro" name="bairro" placeholder="Bairro"
                 value="Avenida Paulista" required>
               <div class="valid-feedback">
                 Tudo certo!
@@ -130,7 +132,7 @@
             <div class="col-md-4 mb-3">
               <label for="validationServerUsername">Número</label>
               <div class="input-group">
-                <input type="text" class="form-control is-invalid" id="validationServerNumero" placeholder="Número"
+                <input type="text" class="form-control is-invalid" id="numero" name="numero" placeholder="Número"
                   aria-describedby="inputGroupPrepend3" required>
                 <div class="invalid-feedback">
                   Por favor, digite um número.
@@ -141,31 +143,45 @@
           <div class="form-row">
             <div class="col-md-6 mb-3">
               <label for="validationServer03">Cidade</label>
-              <input type="text" class="form-control is-invalid" id="validationServer03" placeholder="Cidade" required>
+              <input type="text" class="form-control is-invalid" id="cidade" name="cidade" placeholder="Cidade" required>
               <div class="invalid-feedback">
                 Por favor, informe uma cidade válida.
               </div>
             </div>
             <div class="col-md-3 mb-3">
               <label for="validationServer04">Estado</label>
-              <input type="text" class="form-control is-invalid" id="validationServer04" placeholder="Estado" required>
+              <input type="text" class="form-control is-invalid" id="estado" name="estado" placeholder="Estado" required>
               <div class="invalid-feedback">
                 Por favor, informe um estado válido.
               </div>
             </div>
             <div class="col-md-3 mb-3">
               <label for="validationServer05">CEP</label>
-              <input type="text" class="form-control is-invalid" id="validationServer05" placeholder="CEP" required>
+              <input type="text" class="form-control is-invalid" id="cep" name="cep" placeholder="CEP" required>
               <div class="invalid-feedback">
                 Por favor, informe um CEP válido.
               </div>
             </div>
           </div>
+     
           <hr style="width: 100%;">
+          		<!-- Categorias -->
+           <div class="tab-pane fade" id="contato" role="tabpanel" aria-labelledby="contact-tab">
+                <div class="form-group">
+                  <select name="categoria" id="id-categoria" class="form-control">
+					<option value="0">Selecione</option>
+				  <c:forEach items="${categorias}" var="c">
+				  	<option value="${c.idCategory}">${c.name}</option>
+				  </c:forEach>
+				</select>
+             </div>		
+			</div>
+			
+		<hr style="width: 100%;">
           <div style="text-align: -webkit-right;">
             <button class="btn btn-primary btn-action-cancel" data-toggle="modal" data-target="#site-modal"
               data-highres="resources/images/restaurant-post.png" href="#">Cancelar</button>
-            <button class="btn btn-primary btn-action" type="submit">Cadastrar</button>
+            <button type="submit" value="Salvar" class="btn btn-primary btn-action">Cadastrar</button>
           </div>
         </form>
 
