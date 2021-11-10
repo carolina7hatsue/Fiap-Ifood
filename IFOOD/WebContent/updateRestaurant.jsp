@@ -51,45 +51,45 @@
                                      aria-labelledby="profile-tab">
 									<div class="form-group">
                                          <label for="id-valor">Rua</label> 
-                                         <input type="text" name="rua" id="id-valor" class="form-control" value="${address.street}">
+                                         <input type="text" name="rua" id="id-valor" class="form-control" value="${endereco.street}">
                                      </div>
                                          <div class="form-group">
                                              <label for="formGroupExampleInput2">Número</label>
                                              <input name="numero" type="text" class="form-control" id="numero"
-                                                 placeholder="Digite o Número" value="${address.number}">
+                                                 placeholder="Digite o Número" value="${endereco.number}">
                                          </div>
                                          <div class="form-group">
                                              <label for="formGroupExampleInput2">Cep</label>
                                              <input name="cep" type="text" class="form-control" id="cep"
-                                                 placeholder="Digite o Cep" value="${address.cEP}">
+                                                 placeholder="Digite o Cep" value="${endereco.cEP}">
                                          </div>
                                      </div>
                                      <div style="display: flex;justify-content: space-between;">
                                          <div class="form-group">
                                              <label for="formGroupExampleInput">Bairro</label>
                                              <input name="bairro" type="text" class="form-control" id="bairro"
-                                                 placeholder="Digite o Bairro" value="${address.district}">
+                                                 placeholder="Digite o Bairro" value="${endereco.district}">
                                          </div>
                                          <div class="form-group">
                                              <label for="formGroupExampleInput2">Cidade</label>
                                              <input name="cidade" type="text" class="form-control" id="cidade"
-                                                 placeholder="Digite a Cidade" value="${address.city}">
+                                                 placeholder="Digite a Cidade" value="${endereco.city}">
                                          </div>
                                          <div class="form-group">
                                              <label for="formGroupExampleInput2">Estado</label>
                                              <input name="estado" type="text" class="form-control" id="estado"
-                                                 placeholder="Digite o Estado" value="${address.state}">
+                                                 placeholder="Digite o Estado" value="${endereco.state}">
                                          </div>
                                          <div class="form-group">
                                              <label for="formGroupExampleInput2">País</label>
                                              <input name="pais" type="text" class="form-control" id="pais"
-                                                 placeholder="Digite o País" value="${address.country}">
+                                                 placeholder="Digite o País" value="${endereco.country}">
                                          </div>
                                      </div>
                                      <div class="form-group">
                                          <label for="formGroupExampleInput2">Complemento</label>
                                          <input name="complemento" type="text" class="form-control"
-                                             id="complemento" placeholder="Digite o Complemento" value="${address.complement}">
+                                             id="complemento" placeholder="Digite o Complemento" value="${endereco.complement}">
                                      </div>
                                  </div>
 			
