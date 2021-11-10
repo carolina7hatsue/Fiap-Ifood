@@ -70,7 +70,7 @@ public class OracleRestaurantDAO implements RestaurantDAO {
 	          String country = rs.getString("DS_PAIS");
 	          String complement = rs.getString("DS_COMPLEMENTO");
 	          
-	          int idCategory = rs.getInt("CD_CATEGORIA");
+	          int idCategory = rs.getInt("CD_TIPO");
 	          String nameCategory = rs.getString("DS_NOME");
 	         	       
 	         	          

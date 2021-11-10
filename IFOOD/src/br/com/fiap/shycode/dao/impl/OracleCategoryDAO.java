@@ -46,7 +46,7 @@ private Connection connection;
 	        rs = stmt.executeQuery();
 	    
 	        while (rs.next()) {
-	          int idCategory = rs.getInt("CD_CATEGORIA");
+	          int idCategory = rs.getInt("CD_TIPO");
 	          String name = rs.getString("DS_NOME");
 	         	          
 	          Category Category = new Category(idCategory, name);

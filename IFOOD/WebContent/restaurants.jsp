@@ -26,7 +26,7 @@
 					<th>Valor do Pedido Mínimo</th>
 					<th></th>	
 				</tr>
-				<c:forEach items="${restaurant}" var="r">
+				<c:forEach items="${restaurantes }" var="r">
 				<tr>
 					<td>${r.name}</td>
 					<td>${r.valorMin}</td>

@@ -110,21 +110,21 @@
                                             </div>
                                         </div>
 
-
+										<!-- Categorias -->
                                         <div class="tab-pane fade" id="contato" role="tabpanel"
                                             aria-labelledby="contact-tab">
                                             
 											<select class="form-select" aria-label="Default select example" id="id-categoria" name="categoria">
 											  <option value="0">Selecione</option>
-											  <c:forEach items="${categorias}" var="c">
+											  <c:forEach items="${categorias }" var="c">
 											  	<option value="${c.idCategory}">${c.name }</option>
 											  </c:forEach>
-											
 											</select>
 										</div>
                                     </div>
                                     
                                     <input type="submit" value="Salvar" class="btn btn-primary">
+                                    <a href="restaurants?acao=listar" class="btn-danger"Cancelar></a>
                                 </form>
                             </div>
                     </div>

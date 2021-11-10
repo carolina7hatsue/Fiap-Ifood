@@ -14,7 +14,7 @@ public class RestaurantDAOTeste {
 		RestaurantDAO dao = DAOFactory.getRestaurantDAO();
 		
 		//Cadastrar um produto
-		Restaurant restaurant = new Restaurant(0,"Caverna da Pamonha",(float)20.00);
+		Restaurant restaurant = new Restaurant(0,"Caverna da Pamonha",(float)20.00, 1123443200);
 		try {
 			dao.insert(restaurant);
 			System.out.println("Produto cadastrado.");

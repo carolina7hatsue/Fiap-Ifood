@@ -1,4 +1,4 @@
-package br.com.fiap.controller;
+package br.com.fiap.shycode.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -60,7 +60,7 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 		private void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			List<Restaurant> lista = daoRestaurant.select();
 			request.setAttribute("restaurantes", lista);
-			request.getRequestDispatcher("restaurantes.jsp").forward(request, response);
+			request.getRequestDispatcher("restaurants.jsp").forward(request, response);
 		}
 		
 		private void abrirFormEdicao(HttpServletRequest request, HttpServletResponse response)
@@ -69,7 +69,7 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 			Restaurant restaurant = daoRestaurant.selectById(idRestaurant);
 			request.setAttribute("restaurant", restaurant);
 			carregarOpcoesCategoria(request);
-			request.getResquestDispatcher("updateRestaurant.jsp").forward(request, response);
+			request.getRequestDispatcher("updateRestaurant.jsp").forward(request, response);
 			///Address address = daoAddress.selectById(idAddress);
 			
 			request.setAttribute("produto", restaurant);
@@ -79,19 +79,19 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 		private void abrirFormCadastro(HttpServletRequest request, HttpServletResponse response)
 				throws ServletException, IOException {
 			carregarOpcoesCategoria(request);
-			request.getResquestDispatcher("registration.jsp").forward(request, response);
+			request.getRequestDispatcher("registration.jsp").forward(request, response);
 		}
 		
 		public void carregarOpcoesCategoria(HttpServletRequest request) {
 			List<Category> lista = daoCategory.select();
-			requestAttribute("categorias", lista);
+			request.setAttribute("categorias", lista);
 		}
 		
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 		
-	protected void doPost(HttpServletRequest request, HttpServeletResponse response)
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 		throws ServletException, IOException {
 		
 		String acao = request.getParameter("acao");
@@ -193,8 +193,7 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 	}
 	
 	
-	public void excluir(HttpServletRequest request, HttpServletResponse response)
-		throws SevletExceptiom, IOException {
+	public void excluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
 		int idRestaurant = Integer.parseInt(request.getParameter("codigo"));
 		//int idAddress = 
 		try {
