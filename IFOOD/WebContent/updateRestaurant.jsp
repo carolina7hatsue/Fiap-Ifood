@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-        <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+        <!DOCTYPE html>
         <html>
 
         <head>
@@ -27,7 +27,7 @@
                                 <form action="cadastro" method="post">
                                 	<input type="hidden" value="editar" name="acao">
                                 	<input type="hidden" value="${restaurant.idRestaurant}" name="codigo">
-                                	<input type="hidden" value="${restaurant.address}" name="codigoEndereco">
+                                	<input type="hidden" value="${restaurant.address.idAddress}" name="codigoEndereco">
                                 	
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item"><a class="nav-link active" id="home-tab" data-toggle="tab"
@@ -45,7 +45,6 @@
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade show active" id="home" role="tabpanel"
                                             aria-labelledby="home-tab">
-                                            <input type="hidden" value="cadastrar" name="acao">
                                             <div class="form-group">
                                                 <label for="id-nome">Nome</label> 
                                                 <input type="text" name="nome" id="id-nome" class="form-control" value="${restaurant.name}">
@@ -57,15 +56,12 @@
                                             
                                             <div class="form-group">
                                                 <label for="id-valor">CNPJ</label> 
-                                                <input type="text" name="valor" id="id-valor" class="form-control" value="${restaurant.cNPJ}">
-                                            </div>  
-                                                        
+                                                <input type="text" name="valor" id="id-valor" class="form-control" value="${restaurant.CNPJ}">
+                                            </div>            
                                         </div>
-
+										<!-- Endereço -->
                                         <div class="tab-pane fade" id="perfil" role="tabpanel"
                                             aria-labelledby="profile-tab">
-                                            <input type="hidden" value="cadastrar" name="acao">
-
 											<div class="form-group">
                                                 <label for="id-valor">Rua</label> 
                                                 <input type="text" name="rua" id="id-valor" class="form-control" value="${address.street}">
@@ -109,26 +105,25 @@
                                                     id="complemento" placeholder="Digite o Complemento" value="${address.complement}">
                                             </div>
                                         </div>
+										
 
-
-                                        <div class="tab-pane fade" id="contato" role="tabpanel"
-                                            aria-labelledby="contact-tab">
-                                            
-											<select class="form-select" aria-label="Default select example">
-											  <option selected>Open this select menu</option>
-											  <option value="1">One</option>
-											  <option value="2">Two</option>
-											  <option value="3">Three</option>
-											</select>
-										</div>
-                                    </div>
-                                    <input type="submit" value="Salvar" class="btn btn-primary">
-                                    <a href="cadastro?acao=listar" class="btn btn-danger">Cancelar</a>
-                                </form>
+	                                        <div class="tab-pane fade" id="contato" role="tabpanel"
+	                                            aria-labelledby="contact-tab">
+	                                            
+												<select class="form-select" aria-label="Default select example">
+												  <option selected>Open this select menu</option>
+												  <option value="1">One</option>
+												  <option value="2">Two</option>
+												  <option value="3">Three</option>
+												</select>
+											</div>
+	                                    <input type="submit" value="Salvar" class="btn btn-primary">
+	                                    <a href="cadastro?acao=listar" class="btn btn-danger">Cancelar</a>
+								</form>
                             </div>
                     </div>
                 </div>
-            </div>
+             </div>
             <%@ include file="footer.jsp" %>
         </body>
 

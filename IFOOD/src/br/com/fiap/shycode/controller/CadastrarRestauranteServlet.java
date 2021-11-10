@@ -2,8 +2,6 @@ package br.com.fiap.shycode.controller;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Stream;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -161,7 +159,7 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 			float minPrice = Float.parseFloat(request.getParameter("valor"));
 			int cNPJ = Integer.parseInt(request.getParameter("cnpj"));
 			
-			int idAddress = Integer.parseInt(request.getParameter(""));
+			int idAddress = Integer.parseInt(request.getParameter("codigoEndereco"));
 			String street = request.getParameter("rua");
 			String district = request.getParameter("bairro");
 			int number = Integer.parseInt(request.getParameter("numero"));
