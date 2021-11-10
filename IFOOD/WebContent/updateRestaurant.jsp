@@ -26,7 +26,9 @@
 
                                 <form action="cadastro" method="post">
                                 	<input type="hidden" value="editar" name="acao">
-                                	<input type="hidden" value="${restaurant.id}" name="codigo">
+                                	<input type="hidden" value="${restaurant.idRestaurant}" name="codigo">
+                                	<input type="hidden" value="${restaurant.address}" name="codigoEndereco">
+                                	
                                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                                         <li class="nav-item"><a class="nav-link active" id="home-tab" data-toggle="tab"
                                                 href="#home" role="tab" aria-controls="home"
@@ -50,8 +52,14 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="id-valor">Valor Mínimo</label> 
-                                                <input type="text" name="valor" id="id-valor" class="form-control" value="${restauante.minPrice}">
-                                            </div>                 
+                                                <input type="text" name="valor" id="id-valor" class="form-control" value="${restaurant.minPrice}">
+                                            </div>     
+                                            
+                                            <div class="form-group">
+                                                <label for="id-valor">CNPJ</label> 
+                                                <input type="text" name="valor" id="id-valor" class="form-control" value="${restaurant.cNPJ}">
+                                            </div>  
+                                                        
                                         </div>
 
                                         <div class="tab-pane fade" id="perfil" role="tabpanel"

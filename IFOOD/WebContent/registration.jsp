@@ -49,9 +49,16 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="id-valor">Valor Mínimo</label> 
-                                                <input type="text" name="valor" id="id-valor" class="form-control">
+                                                <input type="number" name="valor" id="id-valor" class="form-control">
+                                            </div>
+                                            
+                                            <div class="form-group">
+                                                <label for="id-cnpj">CNPJ</label> 
+                                                <input type="number" name="cnpj" id="id-cnpj" class="form-control">
                                             </div>
                                         </div>
+                                        
+                                        
 										<!-- Address -->
                                         <div class="tab-pane fade" id="perfil" role="tabpanel"
                                             aria-labelledby="profile-tab">
@@ -107,11 +114,12 @@
                                         <div class="tab-pane fade" id="contato" role="tabpanel"
                                             aria-labelledby="contact-tab">
                                             
-											<select class="form-select" aria-label="Default select example">
-											  <option selected>Open this select menu</option>
-											  <option value="1">One</option>
-											  <option value="2">Two</option>
-											  <option value="3">Three</option>
+											<select class="form-select" aria-label="Default select example" id="id-categoria" name="categoria">
+											  <option value="0">Selecione</option>
+											  <c:forEach items="${categorias}" var="c">
+											  	<option value="${c.idCategory}">${c.name }</option>
+											  </c:forEach>
+											
 											</select>
 										</div>
                                     </div>

@@ -21,10 +21,10 @@
         <a class="nav-link" href="home.jsp">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="cadastro.jsp">Cadastro</a>
+        <a class="nav-link" href="registration?acao=abrir-form-cadastro">Cadastro</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="restaurantes?acao=listar">Restaurantes</a>
+        <a class="nav-link" href="restaurants?acao=listar">Restaurantes</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

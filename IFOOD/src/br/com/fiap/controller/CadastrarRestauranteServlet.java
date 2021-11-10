@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.com.fiap.shycode.bean.Address;
+import br.com.fiap.shycode.bean.Category;
 import br.com.fiap.shycode.bean.Restaurant;
 import br.com.fiap.shycode.dao.AddressDAO;
+import br.com.fiap.shycode.dao.CategoryDAO;
 import br.com.fiap.shycode.dao.RestaurantDAO;
 import br.com.fiap.shycode.exception.DBException;
 import br.com.fiap.shycode.factory.DAOFactory;
@@ -25,12 +27,14 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 
 	private RestaurantDAO daoRestaurant;
 	private AddressDAO daoAddress;
+	private CategoryDAO daoCategory;
 	
 	@Override
 	public void init() throws ServletException {
 		super.init();
 		daoRestaurant = DAOFactory.getRestaurantDAO();
 		daoAddress = DAOFactory.getAddressDAO();
+		daoCategory = DAOFactory.getCategoryDAO();
 	}
 	
 	/**
@@ -47,26 +51,42 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 			case "abrir-form-edicao":
 				abrirFormEdicao(request, response);
 				break;
+			case "abrir-form-cadastro":
+				abrirFormCadastro(request, response);
+				break;
 			}
 		}
 		
-		private void abrirFormEdicao(HttpServletRequest request, HttpServletResponse response)
-				throws ServletException, IOException {
-			int id = Integer.parseInt(request.getParameter("codigo"));
-			Restaurant restaurant = daoRestaurant.selectById(id);
-			Address address = daoAddress.selectById(id);
-			
-			request.setAttribute("produto", restaurant);
-			//Criar pagina de edicao de restaurantes
-			//request.getRequestDispatcher("edicao-produto.jsp").forward(request, response);
-		}
-
 		private void listar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			List<Restaurant> lista = daoRestaurant.select();
 			request.setAttribute("restaurantes", lista);
 			request.getRequestDispatcher("restaurantes.jsp").forward(request, response);
 		}
-
+		
+		private void abrirFormEdicao(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			int idRestaurant = Integer.parseInt(request.getParameter("codigo"));
+			Restaurant restaurant = daoRestaurant.selectById(idRestaurant);
+			request.setAttribute("restaurant", restaurant);
+			carregarOpcoesCategoria(request);
+			request.getResquestDispatcher("updateRestaurant.jsp").forward(request, response);
+			///Address address = daoAddress.selectById(idAddress);
+			
+			request.setAttribute("produto", restaurant);
+			//Criar pagina de edicao de restaurantes
+		}
+		
+		private void abrirFormCadastro(HttpServletRequest request, HttpServletResponse response)
+				throws ServletException, IOException {
+			carregarOpcoesCategoria(request);
+			request.getResquestDispatcher("registration.jsp").forward(request, response);
+		}
+		
+		public void carregarOpcoesCategoria(HttpServletRequest request) {
+			List<Category> lista = daoCategory.select();
+			requestAttribute("categorias", lista);
+		}
+		
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -83,6 +103,9 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 		case "editar":
 			editar(request, response);
 			break;
+		case "excluir":
+			excluir(request, response);
+			break;
 		}
 	}
 		
@@ -92,6 +115,7 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 		try{
 			String name = request.getParameter("nome");
 			float minPrice = Float.parseFloat(request.getParameter("valor"));
+			int cNPJ = Integer.parseInt(request.getParameter("cnpj"));
 			
 			String street = request.getParameter("rua");
 			String district = request.getParameter("bairro");
@@ -102,13 +126,21 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 			String country = request.getParameter("pais");
 			String complement = request.getParameter("complemento");
 			
+			int idCategory = Integer.parseInt(request.getParameter("categoria"));
+			
 			//Request de Category
+			Category category = new Category();
+			category.setIdCategory(idCategory);
 			
-			Restaurant restaurant = new Restaurant(1, name, minPrice); 
+			Restaurant restaurant = new Restaurant(0, name, minPrice, cNPJ); 
 			daoRestaurant.insert(restaurant);
+			restaurant.setCategory(category);
 			
-			Address address = new Address(1, street, district, number, cEP, city, state, country, complement);
+			Address address = new Address(0, street, district, number, cEP, city, state, country, complement);
 			daoAddress.insert(address);
+			restaurant.setAddress(address);
+			
+			daoRestaurant.insert(restaurant);
 			
 			request.setAttribute("msg", "Produto cadastrado!");
 		}catch(DBException db) {
@@ -118,14 +150,15 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 			e.printStackTrace();
 			request.setAttribute("erro","Por favor, valide os dados");
 		}
-		request.getRequestDispatcher("cadastro.jsp").forward(request, response);
+		abrirFormCadastro(request, response);
 	}
 	
 	private void editar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			int idRestaurant = Integer.parseInt(request.getParameter(""));
+			int idRestaurant = Integer.parseInt(request.getParameter("codigo"));
 			String name = request.getParameter("nome");
 			float minPrice = Float.parseFloat(request.getParameter("valor"));
+			int cNPJ = Integer.parseInt(request.getParameter("cnpj"));
 			
 			int idAddress = Integer.parseInt(request.getParameter(""));
 			String street = request.getParameter("rua");
@@ -137,8 +170,12 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 			String country = request.getParameter("pais");
 			String complement = request.getParameter("complemento");
 			
-			//Request de Category
-			Restaurant restaurant = new Restaurant(idRestaurant, name, minPrice); 
+			int idCategory = Integer.parseInt(request.getParameter("categoria"));
+			
+			Category category = new Category();
+			category.setIdCategory(idCategory);
+			
+			Restaurant restaurant = new Restaurant(idRestaurant, name, minPrice, cNPJ); 
 			daoRestaurant.insert(restaurant);
 			
 			Address address = new Address(idAddress, street, district, number, cEP, city, state, country, complement);
@@ -152,9 +189,23 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 			e.printStackTrace();
 			request.setAttribute("erro", "Por favor, valide os dados");
 		}
-		listar(request,response);
+		listar(request, response);
 	}
 	
 	
+	public void excluir(HttpServletRequest request, HttpServletResponse response)
+		throws SevletExceptiom, IOException {
+		int idRestaurant = Integer.parseInt(request.getParameter("codigo"));
+		//int idAddress = 
+		try {
+			daoRestaurant.delete(idRestaurant);
+			//daoAddress.delete(idAddress);
+			request.setAttribute("msg", "Produto removido!");
+		} catch (DBException e) {
+			e.printStackTrace();
+			request.setAttribute("erro", "Erro ao excluir");
+		}
+		listar(request, response);
+	}
 
 }
