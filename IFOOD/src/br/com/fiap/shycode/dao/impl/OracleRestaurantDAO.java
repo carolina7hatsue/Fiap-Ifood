@@ -26,7 +26,7 @@ public class OracleRestaurantDAO implements RestaurantDAO {
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, restaurant.getName());
             stmt.setFloat(2, restaurant.getMinPrice());
-            stmt.setInt(3, restaurant.getCNPJ());
+            stmt.setString(3, restaurant.getCNPJ());
             stmt.setInt(4, restaurant.getAddress().getIdAddress());
             stmt.setInt(5, restaurant.getCategory().getIdCategory());
             
@@ -59,13 +59,13 @@ public class OracleRestaurantDAO implements RestaurantDAO {
 	          int idRestaurant = rs.getInt("CD_RESTAURANTE");
 	          String nameRestaurant = rs.getString("NM_RESTAURANTE");
 	          float valorMin = rs.getFloat("VL_PEDIDO_MIN");
-	          int cNPJ = rs.getInt("VL_CNPJ");
+	          String cNPJ = rs.getString("VL_CNPJ");
           
 	          int idAddress = rs.getInt("CD_ENDERECO");
 	          String street = rs.getString("DS_LOGRADOURO");
 	          String district = rs.getString("DS_BAIRRO");
 	          int number = rs.getInt("VL_NUMERO");
-	          int cep = rs.getInt("DS_CEP");
+	          String cep = rs.getString("DS_CEP");
 	          String city = rs.getString("DS_CIDADE");
 	          String state = rs.getString("DS_ESTADO");
 	          String country = rs.getString("DS_PAIS");
@@ -108,7 +108,7 @@ public class OracleRestaurantDAO implements RestaurantDAO {
           stmt = connection.prepareStatement(sql);
           stmt.setString(1, restaurant.getName());
           stmt.setFloat(2, restaurant.getMinPrice());
-          stmt.setInt(3, restaurant.getCNPJ());
+          stmt.setString(3, restaurant.getCNPJ());
           stmt.setInt(4, restaurant.getAddress().getIdAddress());
           stmt.setInt(5, restaurant.getCategory().getIdCategory());
           
@@ -164,13 +164,13 @@ public class OracleRestaurantDAO implements RestaurantDAO {
    	       	  int idRestaurant = rs.getInt("CD_RESTAURANTE");
 	          String nameRestaurant = rs.getString("NM_RESTAURANTE");
 	          float valorMin = rs.getFloat("VL_PEDIDO_MIN");
-	          int cNPJ = rs.getInt("VL_CNPJ");
+	          String cNPJ = rs.getString("VL_CNPJ");
 	          
 	          int idAddress = rs.getInt("CD_ENDERECO");
 	          String street = rs.getString("DS_LOGRADOURO");
 	          String district = rs.getString("DS_BAIRRO");
 	          int number = rs.getInt("VL_NUMERO");
-	          int cep = rs.getInt("DS_CEP");
+	          String cep = rs.getString("DS_CEP");
 	          String city = rs.getString("DS_CIDADE");
 	          String state = rs.getString("DS_ESTADO");
 	          String country = rs.getString("DS_PAIS");

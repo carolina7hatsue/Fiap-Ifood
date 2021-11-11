@@ -25,7 +25,7 @@ public class OracleAddressDAO implements AddressDAO {
             stmt.setString(1, address.getStreet());
             stmt.setString(2, address.getDistrict());
             stmt.setInt(3, address.getNumber());
-            stmt.setInt(4, address.getCEP());
+            stmt.setString(4, address.getCEP());
             stmt.setString(5, address.getCity());
             stmt.setString(6, address.getState());
             stmt.setString(7, address.getCountry());
@@ -58,7 +58,7 @@ public class OracleAddressDAO implements AddressDAO {
 	          String street = rs.getString("DS_LOGRADOURO");
 	          String district = rs.getString("DS_BAIRRO");
 	          int number = rs.getInt("VL_NUMERO");
-	          int cep = rs.getInt("DS_CEP");
+	          String cep = rs.getString("DS_CEP");
 	          String city = rs.getString("DS_CIDADE");
 	          String state = rs.getString("DS_ESTADO");
 	          String country = rs.getString("DS_PAIS");
@@ -102,7 +102,7 @@ public class OracleAddressDAO implements AddressDAO {
           stmt.setString(1, address.getStreet());
           stmt.setString(2, address.getDistrict());
           stmt.setInt(3, address.getNumber());
-          stmt.setInt(4, address.getCEP());
+          stmt.setString(4, address.getCEP());
           stmt.setString(5, address.getCity());
           stmt.setString(6, address.getState());
           stmt.setString(7, address.getCountry());
@@ -160,7 +160,7 @@ public class OracleAddressDAO implements AddressDAO {
 	          String street = rs.getString("DS_LOGRADOURO");
 	          String district = rs.getString("DS_BAIRRO");
 	          int number = rs.getInt("VL_NUMERO");
-	          int cep = rs.getInt("DS_CEP");
+	          String cep = rs.getString("DS_CEP");
 	          String city = rs.getString("DS_CIDADE");
 	          String state = rs.getString("DS_ESTADO");
 	          String country = rs.getString("DS_PAIS");

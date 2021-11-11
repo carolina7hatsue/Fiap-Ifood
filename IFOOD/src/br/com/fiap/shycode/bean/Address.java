@@ -1,23 +1,63 @@
 package br.com.fiap.shycode.bean;
 
 public class Address {
-	
+	/**
+	 * Id Endereço
+	 */
 	private int IdAddress;
+	/**
+	 * Rua
+	 */
 	private String Street;
+	/**
+	 * Bairro
+	 */
 	private String District;
+	/**
+	 * Numero
+	 */
 	private int Number;
-	private int CEP;
+	/**
+	 * CEP
+	 */
+	private String CEP;
+	/**
+	 * Cidade
+	 */
 	private String City;
+	/**
+	 * Estado
+	 */
 	private String State;
+	/**
+	 * País
+	 */
 	private String Country;
+	/**
+	 * Complemento
+	 */
 	private String Complement;
 	
-
+	/**
+	 * Construtor vazio
+	 */
 	public Address() {
 		super();
 	}
 	
-	public Address(int idAddress, String street, String district, int number, int cEP, String city, String state,
+	/**
+	 * Construtor Endereço completo
+	 * @param idAddress
+	 * @param street
+	 * @param district
+	 * @param number
+	 * @param cEP
+	 * @param city
+	 * @param state
+	 * @param country
+	 * @param complement
+	 */
+	public Address(int idAddress, String street, String district, int number, String cEP, String city, String state,
 			String country, String complement) {
 		super();
 		IdAddress = idAddress;
@@ -30,7 +70,8 @@ public class Address {
 		Country = country;
 		Complement = complement;
 	}
-
+	
+ // Getters e Setters
 	public int getIdAddress() {
 		return IdAddress;
 	}
@@ -63,11 +104,11 @@ public class Address {
 		Number = number;
 	}
 
-	public int getCEP() {
+	public String getCEP() {
 		return CEP;
 	}
 
-	public void setCEP(int cEP) {
+	public void setCEP(String cEP) {
 		CEP = cEP;
 	}
 
@@ -102,9 +143,5 @@ public class Address {
 	public void setComplement(String complement) {
 		Complement = complement;
 	}
-
-
-	
-	
 
 }

@@ -160,6 +160,13 @@ body {
   transform: scaleX(1);
 }
 
+.list-restaurants .site-footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+}
+
 #page-multicolumn {
   background: var(--light-blue);
 }

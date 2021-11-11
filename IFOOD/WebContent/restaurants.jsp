@@ -25,7 +25,7 @@
 <%@ include file="sub-header-restaurants.jsp"%>
 </head>
 <body>
-	<div style="width: 100%">
+	<div style="width: 100%" class="list-restaurants">
 		<c:if test="${not empty msg }">
 			<div class="alert alert-success">${msg}</div>
 		</c:if>
@@ -57,9 +57,8 @@
 				</tr>
 			</c:forEach>
 		</table>
-	</div>
-
 	<%@ include file="footer.jsp"%>
+	</div>
 
 	<!-- Modal -->
 	<div class="modal fade" id="excluirModal" tabindex="-1" role="dialog"

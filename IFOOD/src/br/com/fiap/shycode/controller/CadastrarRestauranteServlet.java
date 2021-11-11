@@ -126,13 +126,13 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 			int idRestaurant = Integer.parseInt(request.getParameter("codigo"));
 			String name = request.getParameter("nome");
 			float minPrice = Float.parseFloat(request.getParameter("valor"));
-			int cNPJ = Integer.parseInt(request.getParameter("cnpj"));
+			String cNPJ = request.getParameter("cnpj");
 			
 			int idAddress = Integer.parseInt(request.getParameter("codigoEndereco"));
 			String street = request.getParameter("rua");
 			String district = request.getParameter("bairro");
 			int number = Integer.parseInt(request.getParameter("numero"));
-			int cEP = Integer.parseInt(request.getParameter("cep"));
+			String cEP = request.getParameter("cep");
 			String city = request.getParameter("cidade");
 			String state = request.getParameter("estado");
 			String country = request.getParameter("pais");
@@ -170,12 +170,12 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 		try{
 			String name = request.getParameter("nome");
 			float minPrice = Float.parseFloat(request.getParameter("valor"));
-			int cNPJ = Integer.parseInt(request.getParameter("cnpj"));
+			String cNPJ = request.getParameter("cnpj");
 			
 			String street = request.getParameter("rua");
 			String district = request.getParameter("bairro");
 			int number = Integer.parseInt(request.getParameter("numero"));
-			int cEP = Integer.parseInt(request.getParameter("cep"));
+			String cEP = request.getParameter("cep");
 			String city = request.getParameter("cidade");
 			String state = request.getParameter("estado");
 			String country = request.getParameter("pais");
