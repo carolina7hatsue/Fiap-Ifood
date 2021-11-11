@@ -166,17 +166,14 @@
      
           <hr style="width: 100%;">
           		<!-- Categorias -->
-           <div class="tab-pane fade" id="contato" role="tabpanel" aria-labelledby="contact-tab">
-                <div class="form-group">
-                  <select name="categoria" id="id-categoria" class="form-control">
+                 <label for="categoria">Categoria</label>
+                  <select name="categoria" id="id-categorias" class="form-control">
 					<option value="0">Selecione</option>
 				  <c:forEach items="${categorias}" var="c">
 				  	<option value="${c.idCategory}">${c.name}</option>
 				  </c:forEach>
 				</select>
-             </div>		
-			</div>
-			
+				
 		<hr style="width: 100%;">
           <div style="text-align: -webkit-right;">
             <button class="btn btn-primary btn-action-cancel" data-toggle="modal" data-target="#site-modal"

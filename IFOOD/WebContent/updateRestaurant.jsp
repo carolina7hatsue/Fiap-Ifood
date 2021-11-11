@@ -46,7 +46,7 @@
                                      
                                      <div class="form-group">
                                          <label for="id-valor">CNPJ</label> 
-                                         <input type="text" name="valor" id="id-valor" class="form-control" value="${restaurantes.CNPJ}">
+                                         <input type="text" name="cnpj" id="id-cnpj" class="form-control" value="${restaurantes.CNPJ}">
                                      </div>            
                                  </div>
 							<!-- Endereço -->
@@ -58,49 +58,48 @@
                                      </div>
                                          <div class="form-group">
                                              <label for="formGroupExampleInput2">Número</label>
-                                             <input name="numero" type="text" class="form-control" id="numero"
+                                             <input name="numero" type="text" class="form-control" id="id-numero"
                                                  placeholder="Digite o Número" value="${endereco.number}">
                                          </div>
                                          <div class="form-group">
                                              <label for="formGroupExampleInput2">Cep</label>
-                                             <input name="cep" type="text" class="form-control" id="cep"
-                                                 placeholder="Digite o Cep" value="${endereco.cEP}">
+                                             <input name="cep" type="text" class="form-control" id="id-cep"
+                                                 placeholder="Digite o Cep" value="${endereco.CEP}">
                                          </div>
                                      </div>
                                      <div style="display: flex;justify-content: space-between;">
                                          <div class="form-group">
                                              <label for="formGroupExampleInput">Bairro</label>
-                                             <input name="bairro" type="text" class="form-control" id="bairro"
+                                             <input name="bairro" type="text" class="form-control" id="id-bairro"
                                                  placeholder="Digite o Bairro" value="${endereco.district}">
                                          </div>
                                          <div class="form-group">
                                              <label for="formGroupExampleInput2">Cidade</label>
-                                             <input name="cidade" type="text" class="form-control" id="cidade"
+                                             <input name="cidade" type="text" class="form-control" id="id-cidade"
                                                  placeholder="Digite a Cidade" value="${endereco.city}">
                                          </div>
                                          <div class="form-group">
                                              <label for="formGroupExampleInput2">Estado</label>
-                                             <input name="estado" type="text" class="form-control" id="estado"
+                                             <input name="estado" type="text" class="form-control" id="id-estado"
                                                  placeholder="Digite o Estado" value="${endereco.state}">
                                          </div>
                                          <div class="form-group">
                                              <label for="formGroupExampleInput2">País</label>
-                                             <input name="pais" type="text" class="form-control" id="pais"
+                                             <input name="pais" type="text" class="form-control" id="id-pais"
                                                  placeholder="Digite o País" value="${endereco.country}">
                                          </div>
                                      </div>
                                      <div class="form-group">
                                          <label for="formGroupExampleInput2">Complemento</label>
                                          <input name="complemento" type="text" class="form-control"
-                                             id="complemento" placeholder="Digite o Complemento" value="${endereco.complement}">
+                                             id="id-complemento" placeholder="Digite o Complemento" value="${endereco.complement}">
                                      </div>
                                  </div>
 			
 
                     <div class="tab-pane fade" id="contato" role="tabpanel" aria-labelledby="contact-tab">
                     <!-- MODIFICAR SELECT-->            
-					<select class="form-select" aria-label="Default select example">
-					<option value="0">Selecione</option>
+					<select name="categoria" id="id-categoria" class="form-select" aria-label="Default select example">
 					<c:forEach items="${categorias}" var="c">
 						<c:if test="${c.idCategory == restaurant.category.idCategory}">
 							<option value="${c.idCategory}" selected>${c.name}</option>

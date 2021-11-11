@@ -70,9 +70,8 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 			request.setAttribute("restaurantes", restaurant);
 			
 			carregarOpcoesCategoria(request);
-			request.getRequestDispatcher("updateRestaurant.jsp").forward(request, response);
-			
 			request.setAttribute("endereco", restaurant.getAddress());
+			request.getRequestDispatcher("updateRestaurant.jsp").forward(request, response);
 		}
 		
 		private void abrirFormCadastro(HttpServletRequest request, HttpServletResponse response)
@@ -144,11 +143,16 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 			Category category = new Category();
 			category.setIdCategory(idCategory);
 			
-			Restaurant restaurant = new Restaurant(idRestaurant, name, minPrice, cNPJ); 
-			daoRestaurant.insert(restaurant);
 			
 			Address address = new Address(idAddress, street, district, number, cEP, city, state, country, complement);
-			daoAddress.insert(address);
+			daoAddress.update(address);
+			
+			Restaurant restaurant = new Restaurant(idRestaurant, name, minPrice, cNPJ);
+			restaurant.setCategory(category);
+			restaurant.setAddress(address);
+			daoRestaurant.update(restaurant);
+			
+
 
 			request.setAttribute("msg", "Restaurante atualizado!");
 		} catch (DBException db) {
