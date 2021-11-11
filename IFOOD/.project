@@ -30,14 +30,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>WebContent/resources/images</name>
-			<type>2</type>
-			<location>C:/Users/gabri/Downloads/images</location>
-		</link>
-		<link>
 			<name>WebContent/resources/js</name>
 			<type>2</type>
-			<location>C:/Users/gabri/Downloads/js</location>
+			<location>C:/Users/55119/Desktop/Ifood/Fiap-Ifood/IFOOD/WebContent/resources/js</location>
 		</link>
 	</linkedResources>
 </projectDescription>

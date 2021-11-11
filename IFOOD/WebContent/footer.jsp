@@ -7,9 +7,9 @@
 </head>
 <body>
 
-  <footer class="site-footer bg-secondary text-light d-flex justify-content-center"> 
+  <footer style="height:100px" class="site-footer bg-secondary text-light d-flex justify-content-center"> 
       <div style="display: flex;width:100%">
-        <img width="65px" src="resources/images/footer-logo-ifood.jpg" />
+        <img width="75px" src="resources/images/footer-logo-ifood.jpg" />
         <div style="align-self: flex-end;">
           <p class="p-footer">© ShyCode 2021 - iFood - Enterprise Challenge IFOOD</p>
         </div>

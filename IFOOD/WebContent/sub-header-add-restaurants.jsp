@@ -18,9 +18,6 @@
 
       <div class="container-fluid">
 
-        <a class="navbar-brand" href="#page-hero">
-          <i class="fas fa-cube"></i> <img width="75px" src="resources/images/logo-ifood.png"></a>
-
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myTogglerNav"
           aria-controls="#myTogglerNav" aria-label="Toggle Navigation">
           <span class="navbar-toggler-icon"></span>
@@ -44,7 +41,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-11 col-sm-10 col-md-8 animated fadeInUp">
-            <h3 class="page-section-title">Home</h3>
+            <h3 class="page-section-title">Cadastrar Restaurante</h3>
           </div>
         </div>
       </div>
