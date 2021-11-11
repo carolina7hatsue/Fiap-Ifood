@@ -155,7 +155,6 @@
 			        }
 				    e.target.value = valor;
 				  });	
-				
 				}
  			</script>	
         </html>
