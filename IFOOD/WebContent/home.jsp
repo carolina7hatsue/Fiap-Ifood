@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,7 @@
 				<div class="card-body">
 					<h5 class="card-title">Cadastrar restaurante</h5>
 					<p class="card-text">Cadastre um restaurante preenchendo um
-						formulário</p>
+						formulÃ¡rio</p>
 					<a class="btn btn-primary btn-action" class="nav-link"
 						href="cadastro?acao=abrir-form-cadastro"
 						class="btn btn-primary btn-action"><svg

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -20,12 +20,12 @@
 	integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	crossorigin="anonymous"></script>
 
-<title>Edição - JSPs</title>
+<title>EdiÃ§Ã£o - JSPs</title>
 <%@ include file="header.jsp"%>
 </head>
 <body>
 	<div class="container">
-		<h1>Edição Restaurante</h1>
+		<h1>EdiÃ§Ã£o Restaurante</h1>
 		<form class="form-restaurant" action="cadastro" method="post">
 			<input type="hidden" value="editar" name="acao"> <input
 				type="hidden" value="${restaurantes.idRestaurant}" name="codigo">
@@ -67,7 +67,7 @@
               <path fill-rule="evenodd"
 						d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z" />
             </svg>
-				<h5 style="margin-left: 12px;" class="sub-title-food">Endereço</h5>
+				<h5 style="margin-left: 12px;" class="sub-title-food">EndereÃ§o</h5>
 			</div>
 			<div class="form-row">
 				<div class="col-md-4 mb-3">
@@ -82,18 +82,18 @@
 						name="bairro" placeholder="Bairro" required>
 				</div>
 				<div class="col-md-4 mb-3">
-					<label for="validationServerUsername">Número</label>
+					<label for="validationServerUsername">NÃºmero</label>
 					<div class="input-group">
 						<input type="text" class="form-control" id="id-numero"
-							value="${endereco.number}" name="numero" placeholder="Número"
+							value="${endereco.number}" name="numero" placeholder="NÃºmero"
 							aria-describedby="inputGroupPrepend3" required>
 					</div>
 				</div>
 				<div class="col-md-4 mb-3">
-					<label for="validationServerUsername">País</label>
+					<label for="validationServerUsername">PaÃ­s</label>
 					<div class="input-group">
 						<input type="text" class="form-control" id="id-pais"
-							value="${endereco.country}" name="pais" placeholder="País"
+							value="${endereco.country}" name="pais" placeholder="PaÃ­s"
 							aria-describedby="inputGroupPrepend3" required>
 					</div>
 				</div>
