@@ -20,26 +20,7 @@ public class OracleAddressDAO implements AddressDAO {
       
           try {
             connection = ConnectionDB.obtainConnection();
-            String sql = "INSERT INTO ENDERECO ("
-            		+ "CD_ENDERECO,"
-            		+ "DS_LOGRADOURO,"
-            		+ "DS_BAIRRO,"
-            		+ "VL_NUMERO,"
-            		+ "DS_CEP,"
-            		+ "DS_CIDADE,"
-            		+ "DS_ESTADO,"
-            		+ "DS_PAIS,"
-            		+ "DS_COMPLEMENTO) "
-            		+ "VALUES "
-            		+ "(SQ_ENDERECO.NEXTVAL, "
-            		+ "?,"
-            		+ "?,"
-            		+ "?,"
-            		+ "?,"
-            		+ "?,"
-            		+ "?,"
-            		+ "?,"
-            		+ "?)";
+            String sql = "INSERT INTO ENDERECO(CD_ENDERECO, DS_LOGRADOURO, DS_BAIRRO, VL_NUMERO, DS_CEP, DS_CIDADE, DS_ESTADO, DS_PAIS, DS_COMPLEMENTO) VALUES (SQ_ENDERECO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?)";
             stmt = connection.prepareStatement(sql);
             stmt.setString(1, address.getStreet());
             stmt.setString(2, address.getDistrict());

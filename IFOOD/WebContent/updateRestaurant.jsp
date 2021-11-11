@@ -54,7 +54,7 @@
                                      aria-labelledby="profile-tab">
 									<div class="form-group">
                                          <label for="id-valor">Rua</label> 
-                                         <input type="text" name="rua" id="id-valor" class="form-control" value="${endereco.street}">
+                                         <input type="text" name="rua" id="id-rua" class="form-control" value="${endereco.street}">
                                      </div>
                                          <div class="form-group">
                                              <label for="formGroupExampleInput2">Número</label>
