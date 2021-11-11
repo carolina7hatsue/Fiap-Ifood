@@ -125,9 +125,10 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 		try {
 			int idRestaurant = Integer.parseInt(request.getParameter("codigo"));
 			String name = request.getParameter("nome");
-			float minPrice = Float.parseFloat(request.getParameter("valor"));
-			int cNPJ = Integer.parseInt(request.getParameter("cnpj"));
 			
+			float minPrice = Float.parseFloat(request.getParameter("valor").replace(".", "").replace(",", "."));		
+			int cNPJ = Integer.parseInt(request.getParameter("cnpj").replace(".", "").replace("-", "").replace("/", ""));		
+						
 			int idAddress = Integer.parseInt(request.getParameter("codigoEndereco"));
 			String street = request.getParameter("rua");
 			String district = request.getParameter("bairro");
@@ -169,9 +170,8 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 		
 		try{
 			String name = request.getParameter("nome");
-			float minPrice = Float.parseFloat(request.getParameter("valor"));
-			int cNPJ = Integer.parseInt(request.getParameter("cnpj"));
-			
+			float minPrice = Float.parseFloat(request.getParameter("valor").replace(".", "").replace(",", "."));		
+			int cNPJ = Integer.parseInt(request.getParameter("cnpj").replace(".", "").replace("-", "").replace("/", ""));		
 			String street = request.getParameter("rua");
 			String district = request.getParameter("bairro");
 			int number = Integer.parseInt(request.getParameter("numero"));
