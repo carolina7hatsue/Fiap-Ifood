@@ -80,6 +80,13 @@
                   aria-describedby="inputGroupPrepend3" required>
               </div>
             </div>
+              <div class="col-md-4 mb-3">
+              <label for="validationServerUsername">País</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="id-pais" name="pais" placeholder="País"
+                  aria-describedby="inputGroupPrepend3" required>
+              </div>
+            </div>
           </div>
           <div class="form-row">
             <div class="col-md-6 mb-3">
