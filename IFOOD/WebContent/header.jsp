@@ -18,7 +18,7 @@
 
       <div class="container-fluid">
 
-        <a class="navbar-brand" href="#page-hero">
+        <a class="navbar-brand" href="#">
           <i class="fas fa-cube"></i> <img width="75px" src="resources/images/logo-ifood.png"></a>
 
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#myTogglerNav"

@@ -7,7 +7,7 @@
 </head>
 <body>
 
-  <footer style="height:100px" class="site-footer bg-secondary text-light d-flex justify-content-center"> 
+  <footer style="width:100%;height:100px" class="bg-secondary text-light d-flex justify-content-center"> 
       <div style="display: flex;width:100%">
         <img width="75px" src="resources/images/footer-logo-ifood.jpg" />
         <div style="align-self: flex-end;">

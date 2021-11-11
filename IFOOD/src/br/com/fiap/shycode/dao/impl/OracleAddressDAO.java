@@ -129,7 +129,7 @@ public class OracleAddressDAO implements AddressDAO {
       
         try {
       	connection = ConnectionDB.obtainConnection();
-          String sql = "DELETE FROM  WHERE CD_ENDERECO = ?";
+          String sql = "DELETE FROM ENDERECO WHERE CD_ENDERECO = ?";
           stmt = connection.prepareStatement(sql);
           stmt.setInt(1, id);
           stmt.executeUpdate();

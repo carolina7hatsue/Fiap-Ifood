@@ -109,10 +109,12 @@ public class CadastrarRestauranteServlet extends HttpServlet {
 		
 	public void excluir(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException  {
 		int idRestaurant = Integer.parseInt(request.getParameter("codigo"));
-		// Deletar address tb?
 		try {
+			var restaurant = daoRestaurant.selectById(idRestaurant);
+			
+			daoAddress.delete(restaurant.getAddress().getIdAddress());
 			daoRestaurant.delete(idRestaurant);
-			// daoAddress.delete(idAddress);?
+	
 			request.setAttribute("msg", "Restaurante removido!");
 		} catch (DBException e) {
 			e.printStackTrace();
