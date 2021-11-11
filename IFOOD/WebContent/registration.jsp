@@ -14,7 +14,7 @@
         <body>
         <div style="width: 100%;height: 85px;padding:10px;display: flex;">
           <img style="width: 50px;" class="img-food" src="resources/images/restaurant-post.png" class="card-img-top" alt="...">
-          <h4 class="sub-title-food" style="align-self: flex-end;margin-left: 20px;">Cadastro de Restaurante</h4>
+          <h4 class="sub-title-food" style="align-self: flex-end;margin-left: 20px;">Formulário de Cadastro</h4>
         </div>
         <hr style="width: 100%;">
         			

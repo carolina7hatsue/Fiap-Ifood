@@ -21,11 +21,10 @@
 	crossorigin="anonymous"></script>
 
 <title>Edição - JSPs</title>
-<%@ include file="header.jsp"%>
+<%@ include file="sub-header-update-restaurants.jsp"%>
 </head>
 <body>
 	<div class="container">
-		<h1>Edição Restaurante</h1>
 		<form class="form-restaurant" action="cadastro" method="post">
 			<input type="hidden" value="editar" name="acao"> <input
 				type="hidden" value="${restaurantes.idRestaurant}" name="codigo">
