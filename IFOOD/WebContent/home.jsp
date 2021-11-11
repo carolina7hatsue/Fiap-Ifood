@@ -53,17 +53,6 @@
     </section>
   </article>
 
-
-  <article id="site-modal" class="modal fade">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-
-
-      </div>
-    </div>
-  </article>
-
-
 <%@ include file="footer.jsp" %>
 </body>
 </html>
