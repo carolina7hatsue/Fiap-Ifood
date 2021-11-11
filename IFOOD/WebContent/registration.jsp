@@ -39,17 +39,17 @@
           <div class="form-row">
             <div class="col-md-4 mb-3">
               <label for="validationServer01">Nome</label>
-              <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome"
+              <input type="text" class="form-control" id="id-nome" name="nome" placeholder="Nome"
                 required>      
             </div>
             <div class="col-md-4 mb-3">
               <label for="validationServer01">Cnpj</label>
-              <input type="text" class="form-control" id="cnpj" name="cnpj"
+              <input type="text" class="form-control" id="id-cnpj" name="cnpj"
                 placeholder="Digite o CNPJ" required>   
             </div>
              <div class="col-md-4 mb-3">
               <label for="validationServer01">Valor min. do pedido</label>
-              <input type="text" class="form-control" id="valor" name="valor"
+              <input type="text" class="form-control" id="id-valor" name="valor"
                 placeholder="Digite um valor minimo de pedido" required>   
             </div>
           </div>
@@ -65,18 +65,18 @@
           <div class="form-row">
             <div class="col-md-4 mb-3">
               <label for="validationServer01">Logradouro</label>
-              <input type="text" class="form-control" id="logradouro" name="logradouro" placeholder="Logradouro"
+              <input type="text" class="form-control" id="id-rua" name="rua" placeholder="Logradouro"
                 required>
             </div>
             <div class="col-md-4 mb-3">
               <label for="validationServer02">Bairro</label>
-              <input type="text" class="form-control" id="bairro" name="bairro" placeholder="Bairro"
+              <input type="text" class="form-control" id="id-bairro" name="bairro" placeholder="Bairro"
                  required>
             </div>
             <div class="col-md-4 mb-3">
               <label for="validationServerUsername">Número</label>
               <div class="input-group">
-                <input type="text" class="form-control" id="numero" name="numero" placeholder="Número"
+                <input type="text" class="form-control" id="id-numero" name="numero" placeholder="Número"
                   aria-describedby="inputGroupPrepend3" required>
               </div>
             </div>
@@ -84,15 +84,15 @@
           <div class="form-row">
             <div class="col-md-6 mb-3">
               <label for="validationServer03">Cidade</label>
-              <input type="text" class="form-control" id="cidade" name="cidade" placeholder="Cidade" required>
+              <input type="text" class="form-control" id="id-cidade" name="cidade" placeholder="Cidade" required>
             </div>
             <div class="col-md-3 mb-3">
               <label for="validationServer04">Estado</label>
-              <input type="text" class="form-control" id="estado" name="estado" placeholder="Estado" required>
+              <input type="text" class="form-control" id="id-estado" name="estado" placeholder="Estado" required>
             </div>
             <div class="col-md-3 mb-3">
               <label for="validationServer05">CEP</label>
-              <input type="text" class="form-control" id="cep" name="cep" placeholder="CEP" required>
+              <input type="text" class="form-control" id="id-cep" name="cep" placeholder="CEP" required>
             </div>
           </div>
      
