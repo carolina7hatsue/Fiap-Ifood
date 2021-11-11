@@ -11,11 +11,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <title>Lista de Produto</title>
-<%@ include file="header.jsp" %>
+<%@ include file="sub-header-restaurants.jsp" %>
 </head>
 <body>
-	<div class="container">
-		<h1>Restaurantes</h1>
+	<div style="width:100%">
 		<c:if test="${not empty msg }">
 			<div class="alert alert-success">${msg}</div>
 		</c:if>
