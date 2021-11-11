@@ -102,6 +102,11 @@
               <input type="text" class="form-control" id="id-cep" name="cep" placeholder="CEP" required>
             </div>
           </div>
+          
+          <div class="col-md-3 mb-3">
+              <label for="validationServer04">Complemento</label>
+              <input type="text" class="form-control" id="id-complemento" name="complemento" placeholder="Complemento" required>
+            </div>
      
           <hr style="width: 100%;">
           		<!-- Categorias -->
