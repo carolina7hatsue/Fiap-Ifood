@@ -8,7 +8,8 @@
 			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-            <%@ include file="sub-header-add-restaurants.jsp" %>			
+            <%@ include file="sub-header-add-restaurants.jsp" %>		
+                     
 		</head>
         <body>
         <div style="width: 100%;height: 85px;padding:10px;display: flex;">
@@ -49,7 +50,7 @@
             </div>
              <div class="col-md-4 mb-3">
               <label for="validationServer01">Valor min. do pedido</label>
-              <input type="text" class="form-control" id="id-valor" name="valor"
+              <input onChange="formatarMoeda()" type="text" class="form-control" id="id-valor" name="valor"
                 placeholder="Digite um valor minimo de pedido" required>   
             </div>
           </div>
@@ -76,11 +77,19 @@
             <div class="col-md-4 mb-3">
               <label for="validationServerUsername">Número</label>
               <div class="input-group">
-                <input type="text" class="form-control" id="id-numero" name="numero" placeholder="Número"
+                <input type="number" class="form-control" id="id-numero" name="numero" placeholder="Número"
                   aria-describedby="inputGroupPrepend3" required>
               </div>
             </div>
-              <div class="col-md-4 mb-3">
+              <div class="col-md-6 mb-3">
+              <label for="validationServerUsername">Complemento</label>
+              <div class="input-group">
+                <input type="text" class="form-control" id="id-complemento" name="complemento" placeholder="Complemento"
+                  aria-describedby="inputGroupPrepend3" required>
+              </div>
+            </div>
+            
+            <div class="col-md-6 mb-3">
               <label for="validationServerUsername">País</label>
               <div class="input-group">
                 <input type="text" class="form-control" id="id-pais" name="pais" placeholder="País"
@@ -99,15 +108,10 @@
             </div>
             <div class="col-md-3 mb-3">
               <label for="validationServer05">CEP</label>
-              <input type="text" class="form-control" id="id-cep" name="cep" placeholder="CEP" required>
+              <input type="number" class="form-control" id="id-cep" name="cep" placeholder="CEP" required>
             </div>
           </div>
           
-          <div class="col-md-3 mb-3">
-              <label for="validationServer04">Complemento</label>
-              <input type="text" class="form-control" id="id-complemento" name="complemento" placeholder="Complemento" required>
-            </div>
-     
           <hr style="width: 100%;">
           		<!-- Categorias -->
           		   <div style="display: flex;margin-bottom: 10px;">
@@ -130,4 +134,28 @@
         </form>
             <%@ include file="footer.jsp" %>
         </body>
+        
+         <script>
+				document.getElementById('id-cnpj').addEventListener('input', function (e) {
+				    var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,3})(\d{0,3})(\d{0,4})(\d{0,2})/);
+				    e.target.value = !x[2] ? x[1] : x[1] + '.' + x[2] + '.' + x[3] + '/' + x[4] + (x[5] ? '-' + x[5] : '');
+				  });	
+				
+				document.getElementById('id-valor').addEventListener('input', function (e) {
+				    var elemento = document.getElementById('id-valor');
+			        var valor = elemento.value;
+
+			        valor = valor + '';
+			        valor = parseInt(valor.replace(/[\D]+/g, ''));
+			        valor = valor + '';
+			        valor = valor.replace(/([0-9]{2})$/g, ",$1");
+
+			        if (valor.length > 6) {
+			            valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+			        }
+				    e.target.value = valor;
+				  });	
+				
+				}
+ 			</script>	
         </html>

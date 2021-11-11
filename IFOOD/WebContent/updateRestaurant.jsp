@@ -154,4 +154,27 @@
 	</div>
 	<%@ include file="footer.jsp"%>
 </body>
+<script>
+				document.getElementById('id-cnpj').addEventListener('input', function (e) {
+				    var x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,3})(\d{0,3})(\d{0,4})(\d{0,2})/);
+				    e.target.value = !x[2] ? x[1] : x[1] + '.' + x[2] + '.' + x[3] + '/' + x[4] + (x[5] ? '-' + x[5] : '');
+				  });	
+				
+				document.getElementById('id-valor').addEventListener('input', function (e) {
+				    var elemento = document.getElementById('id-valor');
+			        var valor = elemento.value;
+
+			        valor = valor + '';
+			        valor = parseInt(valor.replace(/[\D]+/g, ''));
+			        valor = valor + '';
+			        valor = valor.replace(/([0-9]{2})$/g, ",$1");
+
+			        if (valor.length > 6) {
+			            valor = valor.replace(/([0-9]{3}),([0-9]{2}$)/g, ".$1,$2");
+			        }
+				    e.target.value = valor;
+				  });	
+				
+				}
+ 			</script>	
 </html>
